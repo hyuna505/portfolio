@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김지현</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black: #111111;
+            --white: #ffffff;
+            --warm:  #F5F2EE;
+            --gray:  #888480;
+            --light: #d4d0cb;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* ══════════════════════════
+           NAV
+        ══════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 22px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: multiply;
+        }
+        .nav-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 15px;
+            letter-spacing: 0.2em;
+            color: var(--black);
+            text-decoration: none;
+        }
+        .nav-right {
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* ══════════════════════════
+           01 — HERO  (패션잡지 상세페이지)
+        ══════════════════════════ */
+        .hero {
+            display: grid;
+            grid-template-columns: 42% 58%;
+            min-height: 100vh;
+            background: var(--white);
+        }
+
+        /* Left — typography */
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 120px 48px 52px;
+            position: relative;
+        }
+        .hero-issue {
+            position: absolute;
+            top: 32px; left: 40px;
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+        .hero-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(72px, 11vw, 160px);
+            line-height: 0.88;
+            letter-spacing: -0.01em;
+            color: var(--black);
+            margin-bottom: 6px;
+        }
+        .hero-name .outline {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--black);
+        }
+        .hero-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--black);
+            margin: 24px 0;
+        }
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .hero-tagline {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--black);
+            max-width: 320px;
+        }
+
+        /* Right — photo */
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+            background: var(--warm);
+        }
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            mix-blend-mode: multiply;
+        }
+        .hero-caption {
+            position: absolute;
+            bottom: 28px;
+            right: 28px;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            color: var(--gray);
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+        }
+
+        /* ══════════════════════════
+           02 — ABOUT  (분절 타이포)
+        ══════════════════════════ */
+        .about {
+            padding: 100px 40px;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: end;
+        }
+        .about-text {}
+        .about-big {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(64px, 12vw, 160px);
+            line-height: 0.88;
+            color: var(--black);
+            display: block;
+        }
+        .about-big.indent { padding-left: 0.5em; }
+        .about-big.outline {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--black);
+        }
+
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 28px;
+            padding-bottom: 8px;
+        }
+        .about-photo {
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+        .about-desc {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--black);
+            max-width: 320px;
+        }
+        .about-meta {
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            color: var(--gray);
+            text-transform: uppercase;
+            border-top: 1px solid var(--light);
+            padding-top: 14px;
+            width: 100%;
+        }
+
+        /* ══════════════════════════
+           03 — CAREER  (타임라인)
+        ══════════════════════════ */
+        .career {
+            background: var(--warm);
+            padding: 100px 40px;
+        }
+        .career-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .career-heading {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(60px, 10vw, 130px);
+            line-height: 0.88;
+            color: var(--black);
+            margin-bottom: 80px;
+        }
+        .career-heading span {
+            display: block;
+        }
+        .career-heading .out {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--black);
+            padding-left: 1em;
+        }
+
+        /* Timeline — editorial */
+        .tl {
+            position: relative;
+        }
+        .tl::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: rgba(0,0,0,0.12);
+            transform: translateX(-50%);
+        }
+        .tl-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 96px;
+            position: relative;
+        }
+        .tl-entry::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 9px; height: 9px;
+            background: var(--warm);
+            border: 1.5px solid rgba(0,0,0,0.3);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .tl-entry.now::before { background: var(--black); }
+
+        /* LEFT entry: info col-1 right-aligned, photos col-2 */
+        .tl-L .tl-info   { grid-column: 1; text-align: right; padding: 0 52px 0 0; }
+        .tl-L .tl-photos { grid-column: 2; padding: 0 0 0 52px; }
+
+        /* RIGHT entry: photos col-1, info col-2 left-aligned */
+        .tl-R .tl-info   { grid-column: 2; grid-row: 1; text-align: left; padding: 0 0 0 52px; }
+        .tl-R .tl-photos { grid-column: 1; grid-row: 1; padding: 0 52px 0 0; }
+
+        .tl-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(44px, 6vw, 80px);
+            line-height: 0.88;
+            color: var(--black);
+            display: block;
+            letter-spacing: -0.01em;
+            margin-bottom: 14px;
+        }
+        .tl-co {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+        }
+        .tl-role {
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        .tl-now-badge {
+            display: inline-block;
+            margin-top: 10px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            padding: 3px 8px;
+            text-transform: uppercase;
+        }
+
+        /* Photo placeholders */
+        .tl-photos {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ph-duo { display: flex; gap: 8px; }
+        .ph {
+            background: rgba(0,0,0,0.04);
+            border: 1px dashed rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .ph::after {
+            content: 'PHOTO';
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            color: rgba(0,0,0,0.15);
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        .ph-top-port { width: 62%; aspect-ratio: 3/4; }
+        .ph-top-land { width: 100%; aspect-ratio: 4/3; }
+        .ph-mid-land { flex: 3; aspect-ratio: 4/3; }
+        .ph-mid-sq   { flex: 2; aspect-ratio: 1; }
+        .ph-mid-port { flex: 2; aspect-ratio: 3/4; }
+
+        /* ══════════════════════════
+           04 — LIFESTYLE  (사진만으로)
+        ══════════════════════════ */
+        .lifestyle {
+            background: var(--white);
+            padding: 100px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+            align-items: end;
+        }
+
+        .ls-block {
+            position: relative;
+            overflow: hidden;
+        }
+        /* 사이즈 변주 */
+        .ls-block:nth-child(1) { margin-top: 80px; }
+        .ls-block:nth-child(3) { margin-top: 40px; }
+
+        .ls-block img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(15%);
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        .ls-block:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+        .ls-label {
+            margin-top: 10px;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            color: var(--gray);
+            text-transform: uppercase;
+            padding: 0 16px;
+        }
+
+        /* ══════════════════════════
+           05 — CONTACT
+        ══════════════════════════ */
+        .contact {
+            background: var(--black);
+            padding: 100px 40px;
+        }
+        .contact-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: end;
+            gap: 40px;
+        }
+        .contact-heading {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(60px, 10vw, 120px);
+            line-height: 0.88;
+            color: var(--white);
+        }
+        .contact-heading span { display: block; }
+        .contact-heading .out {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--white);
+            padding-left: 0.6em;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .contact-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 14px;
+        }
+        .contact-links a:last-child { border-bottom: none; padding-bottom: 0; }
+        .contact-links a:hover { color: var(--white); }
+        .contact-foot {
+            grid-column: 1 / -1;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.25);
+            text-transform: uppercase;
+        }
+
+        /* ══════════════════════════
+           RESPONSIVE
+        ══════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 18px 20px; }
+
+            .hero { grid-template-columns: 1fr; min-height: auto; }
+            .hero-left { padding: 100px 24px 40px; justify-content: flex-start; }
+            .hero-right { height: 70vw; min-height: 300px; }
+
+            .about { grid-template-columns: 1fr; padding: 72px 24px; }
+            .about-photo { width: 160px; height: 200px; }
+
+            .career { padding: 72px 24px; }
+            .tl::before { left: 20px; }
+            .tl-entry { grid-template-columns: 1fr; margin-bottom: 64px; }
+            .tl-entry::before { left: 20px; top: 28px; }
+            .tl-L .tl-info,
+            .tl-R .tl-info   { grid-column: 1; text-align: left; padding: 0 0 0 44px; }
+            .tl-L .tl-photos,
+            .tl-R .tl-photos { grid-column: 1; grid-row: 2; padding: 16px 0 0 44px; }
+
+            .lifestyle { grid-template-columns: 1fr 1fr; padding: 72px 24px; gap: 8px; }
+            .ls-block:nth-child(1),
+            .ls-block:nth-child(3) { margin-top: 0; }
+
+            .contact { padding: 72px 24px; }
+            .contact-inner { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-name">JIHYUN KIM</a>
+    <span class="nav-right">Brand Manager · Planner</span>
+</nav>
+
+
+<!-- ══ 01 HERO ══ -->
+<section class="hero">
+
+    <div class="hero-left">
+        <span class="hero-issue">Vol. 2026 — Personal</span>
+
+        <div>
+            <h1 class="hero-name">
+                KIM<br>
+                <span class="outline">JIHYUN</span>
+            </h1>
+            <div class="hero-divider"></div>
+            <p class="hero-label">Brand Manager · Planner · 17 Yrs</p>
+            <p class="hero-tagline">
+                상품을 만들고,<br>
+                브랜드를 키우고,<br>
+                온라인 사업을 설계합니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <img class="hero-photo" src="image/me 2.jpeg" alt="">
+        <span class="hero-caption">Kim Jihyun · 2026</span>
+    </div>
+
+</section>
+
+
+<!-- ══ 02 ABOUT ══ -->
+<section class="about">
+
+    <div class="about-text">
+        <span class="about-big">브랜</span>
+        <span class="about-big indent">드매</span>
+        <span class="about-big outline">니저</span>
+    </div>
+
+    <div class="about-right">
+        <img class="about-photo" src="image/me.jpeg" alt="">
+        <p class="about-desc">
+            유통·제조·엔터테인먼트까지,<br>
+            다양한 업종에서 상품과 브랜드를<br>
+            온라인으로 연결해온 17년차 기획자.<br><br>
+            구조를 설계하고,<br>
+            사람과 브랜드 사이를 잇습니다.
+        </p>
+        <p class="about-meta">Since 2005 · Seoul, Korea</p>
+    </div>
+
+</section>
+
+
+<!-- ══ 03 CAREER ══ -->
+<section class="career" id="career">
+    <div class="career-inner">
+        <p class="section-label">Work History</p>
+        <div class="career-heading">
+            <span>CA</span>
+            <span class="out">RE</span>
+            <span>ER</span>
+        </div>
+
+        <div class="tl">
+
+            <!-- 2005 프라임인터내셔날 -->
+            <div class="tl-entry tl-L">
+                <div class="tl-info">
+                    <span class="tl-year">2005</span>
+                    <div class="tl-co">(주)프라임인터내셔날</div>
+                    <div class="tl-role">홈데코 MD · 글로벌 소싱</div>
+                </div>
+                <div class="tl-photos">
+                    <div class="ph ph-top-port"></div>
+                    <div class="ph-duo">
+                        <div class="ph ph-mid-land"></div>
+                        <div class="ph ph-mid-sq"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2011 알스컴퍼니 -->
+            <div class="tl-entry tl-R">
+                <div class="tl-info">
+                    <span class="tl-year">2011</span>
+                    <div class="tl-co">(주)알스컴퍼니</div>
+                    <div class="tl-role">팬덤 커머스 플랫폼 · 팀장</div>
+                </div>
+                <div class="tl-photos">
+                    <div class="ph ph-top-land"></div>
+                    <div class="ph-duo">
+                        <div class="ph ph-mid-port"></div>
+                        <div class="ph ph-mid-sq"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2014 서영이앤티 -->
+            <div class="tl-entry tl-L">
+                <div class="tl-info">
+                    <span class="tl-year">2014</span>
+                    <div class="tl-co">(주)서영이앤티</div>
+                    <div class="tl-role">키즈카페 브랜드 공간 기획 · 대리</div>
+                </div>
+                <div class="tl-photos">
+                    <div class="ph ph-top-port"></div>
+                    <div class="ph-duo">
+                        <div class="ph ph-mid-land"></div>
+                        <div class="ph ph-mid-sq"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2017 마그피아 -->
+            <div class="tl-entry tl-R">
+                <div class="tl-info">
+                    <span class="tl-year">2017</span>
+                    <div class="tl-co">(주)마그피아</div>
+                    <div class="tl-role">유아교구 브랜드 상품 기획 · 팀장</div>
+                </div>
+                <div class="tl-photos">
+                    <div class="ph ph-top-land"></div>
+                    <div class="ph-duo">
+                        <div class="ph ph-mid-port"></div>
+                        <div class="ph ph-mid-sq"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2019.03 파르크 -->
+            <div class="tl-entry tl-L">
+                <div class="tl-info">
+                    <span class="tl-year">2019</span>
+                    <div class="tl-co">(주)파르크</div>
+                    <div class="tl-role">K-뷰티 역직구 플랫폼 · 일본</div>
+                </div>
+                <div class="tl-photos">
+                    <div class="ph ph-top-port"></div>
+                    <div class="ph-duo">
+                        <div class="ph ph-mid-land"></div>
+                        <div class="ph ph-mid-sq"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2019.12→ 온나인슈퍼 (현재) -->
+            <div class="tl-entry tl-R now">
+                <div class="tl-info">
+                    <span class="tl-year">2019 →</span>
+                    <div class="tl-co">(주)온나인슈퍼</div>
+                    <div class="tl-role">온라인 사업 총괄 · 부장</div>
+                    <span class="tl-now-badge">현재</span>
+                </div>
+                <div class="tl-photos">
+                    <div class="ph ph-top-land"></div>
+                    <div class="ph-duo">
+                        <div class="ph ph-mid-port"></div>
+                        <div class="ph ph-mid-sq"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══ 04 LIFESTYLE — 사진만 ══ -->
+<section class="lifestyle">
+
+    <div class="ls-block">
+        <img src="image/me_cat person.jpeg" alt="">
+        <p class="ls-label">Cat Person</p>
+    </div>
+
+    <div class="ls-block">
+        <img src="image/me vive.JPG" alt="">
+        <p class="ls-label">My Vibe</p>
+    </div>
+
+    <div class="ls-block">
+        <img src="image/me_also dog person.jpeg" alt="">
+        <p class="ls-label">Also Dog Person</p>
+    </div>
+
+</section>
+
+
+<!-- ══ 05 CONTACT ══ -->
+<section class="contact">
+    <div class="contact-inner">
+        <div class="contact-heading">
+            <span>CON</span>
+            <span class="out">TA</span>
+            <span>CT</span>
+        </div>
+        <div class="contact-links">
+            <a href="mailto:md.jihyun@gmail.com">md.jihyun@gmail.com</a>
+            <a href="tel:01032021179">010-3202-1179</a>
+            <a href="https://instagram.com/hyuna505" target="_blank">@hyuna505</a>
+        </div>
+        <div class="contact-foot">
+            <span>Kim Jihyun · Brand Manager</span>
+            <span>Seoul · 2026</span>
+        </div>
+    </div>
+</section>
+
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const el = document.querySelector(a.getAttribute('href'));
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+</script>
+</body>
+</html>
