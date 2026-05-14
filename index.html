@@ -1,690 +1,2095 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김지현</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김지현 | 콘텐츠 & 상품기획 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       NOTION DESIGN SYSTEM TOKENS
+    ───────────────────────────────────────────────────────────── */
+    :root {
+      --primary:            #5645d4;
+      --primary-pressed:    #4534b3;
+      --brand-navy:         #0a1530;
+      --brand-navy-mid:     #1a2a52;
+      --link-blue:          #0075de;
+      --brand-orange:       #dd5b00;
+      --brand-pink:         #ff64c8;
+      --brand-purple:       #7b3ff2;
+      --brand-teal:         #2a9d99;
+      --brand-green:        #1aae39;
+      --brand-yellow:       #f5d75e;
+      --tint-peach:         #ffe8d4;
+      --tint-rose:          #fde0ec;
+      --tint-mint:          #d9f3e1;
+      --tint-lavender:      #e6e0f5;
+      --tint-sky:           #dcecfa;
+      --tint-yellow:        #fef7d6;
+      --tint-yellow-bold:   #f9e79f;
+      --tint-cream:         #f8f5e8;
+      --canvas:             #ffffff;
+      --surface:            #f6f5f4;
+      --surface-soft:       #fafaf9;
+      --hairline:           #e5e3df;
+      --hairline-strong:    #c8c4be;
+      --ink:                #1a1a1a;
+      --charcoal:           #37352f;
+      --slate:              #5d5b54;
+      --steel:              #787671;
+      --stone:              #a4a097;
+      --muted:              #bbb8b1;
+      --on-dark:            #ffffff;
+      --on-dark-muted:      #a4a097;
+      --r-sm:  6px;
+      --r-md:  8px;
+      --r-lg:  12px;
+      --r-xl:  16px;
+      --r-full: 9999px;
+    }
 
-        :root {
-            --black: #111111;
-            --white: #ffffff;
-            --warm:  #F5F2EE;
-            --gray:  #888480;
-            --light: #d4d0cb;
-        }
+    /* ─────────────────────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Noto Sans KR', -apple-system, sans-serif;
-            background: var(--white);
-            color: var(--black);
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Inter', 'Noto Serif KR', -apple-system, system-ui, 'Segoe UI', sans-serif;
+      background: var(--canvas);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 16px;
+    }
 
-        /* ══════════════════════════
-           NAV
-        ══════════════════════════ */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 22px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            mix-blend-mode: multiply;
-        }
-        .nav-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 15px;
-            letter-spacing: 0.2em;
-            color: var(--black);
-            text-decoration: none;
-        }
-        .nav-right {
-            font-size: 11px;
-            letter-spacing: 0.14em;
-            color: var(--gray);
-            text-transform: uppercase;
-        }
+    a { color: var(--link-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-        /* ══════════════════════════
-           01 — HERO  (패션잡지 상세페이지)
-        ══════════════════════════ */
-        .hero {
-            display: grid;
-            grid-template-columns: 42% 58%;
-            min-height: 100vh;
-            background: var(--white);
-        }
+    /* ─────────────────────────────────────────────────────────────
+       TOP NAV
+    ───────────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--hairline);
+      height: 64px;
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+    }
+    .nav-logo {
+      font-size: 18px; font-weight: 600;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--slate);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .btn-primary {
+      background: var(--primary); color: var(--on-dark);
+      font-size: 14px; font-weight: 500; line-height: 1.3;
+      padding: 10px 18px; border-radius: var(--r-md);
+      border: none; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: background .15s;
+    }
+    .btn-primary:hover { background: var(--primary-pressed); text-decoration: none; color: var(--on-dark); }
 
-        /* Left — typography */
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 120px 48px 52px;
-            position: relative;
-        }
-        .hero-issue {
-            position: absolute;
-            top: 32px; left: 40px;
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            color: var(--gray);
-            text-transform: uppercase;
-        }
-        .hero-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(72px, 11vw, 160px);
-            line-height: 0.88;
-            letter-spacing: -0.01em;
-            color: var(--black);
-            margin-bottom: 6px;
-        }
-        .hero-name .outline {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--black);
-        }
-        .hero-divider {
-            width: 40px;
-            height: 1px;
-            background: var(--black);
-            margin: 24px 0;
-        }
-        .hero-label {
-            font-size: 11px;
-            letter-spacing: 0.18em;
-            color: var(--gray);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .hero-tagline {
-            font-size: 14px;
-            font-weight: 300;
-            line-height: 1.85;
-            color: var(--black);
-            max-width: 320px;
-        }
+    /* ─────────────────────────────────────────────────────────────
+       HERO — CREAM + RAINBOW FOLDER TABS
+    ───────────────────────────────────────────────────────────── */
 
-        /* Right — photo */
-        .hero-right {
-            position: relative;
-            overflow: hidden;
-            background: var(--warm);
-        }
-        .hero-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            display: block;
-            mix-blend-mode: multiply;
-        }
-        .hero-caption {
-            position: absolute;
-            bottom: 28px;
-            right: 28px;
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            color: var(--gray);
-            text-transform: uppercase;
-            writing-mode: vertical-rl;
-        }
+    /* cream paper background */
+    .hero {
+      background: #eee8da;
+      min-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* warm paper vignette */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 40% at 50% 100%, rgba(180,155,110,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 0% 0%,    rgba(200,180,140,.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    /* paper grain */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: .06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
 
-        /* ══════════════════════════
-           02 — ABOUT  (분절 타이포)
-        ══════════════════════════ */
-        .about {
-            padding: 100px 40px;
-            background: var(--white);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: end;
-        }
-        .about-text {}
-        .about-big {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(64px, 12vw, 160px);
-            line-height: 0.88;
-            color: var(--black);
-            display: block;
-        }
-        .about-big.indent { padding-left: 0.5em; }
-        .about-big.outline {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--black);
-        }
+    /* outer wrapper */
+    .hero-editorial {
+      position: relative;
+      max-width: 940px;
+      width: 100%;
+      z-index: 1;
+      padding-top: 52px;
+    }
 
-        .about-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 28px;
-            padding-bottom: 8px;
-        }
-        .about-photo {
-            width: 220px;
-            height: 280px;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-        .about-desc {
-            font-size: 14px;
-            font-weight: 300;
-            line-height: 1.9;
-            color: var(--black);
-            max-width: 320px;
-        }
-        .about-meta {
-            font-size: 11px;
-            letter-spacing: 0.14em;
-            color: var(--gray);
-            text-transform: uppercase;
-            border-top: 1px solid var(--light);
-            padding-top: 14px;
-            width: 100%;
-        }
+    /* folder tabs */
+    .hero-tabs {
+      position: absolute;
+      top: 0; left: 0;
+      display: flex; gap: 5px;
+      align-items: flex-end;
+    }
+    .hero-tab {
+      flex: 0 0 130px; width: 130px;
+      height: 44px; padding: 0;
+      border-radius: 10px 10px 0 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(0,0,0,.65);
+      border: 1px solid rgba(0,0,0,.10); border-bottom: none;
+      cursor: pointer; user-select: none;
+      transition: filter .12s;
+    }
+    .hero-tab:hover { filter: brightness(.93); }
 
-        /* ══════════════════════════
-           03 — CAREER  (타임라인)
-        ══════════════════════════ */
-        .career {
-            background: var(--warm);
-            padding: 100px 40px;
-        }
-        .career-inner {
-            max-width: 960px;
-            margin: 0 auto;
-        }
+    /* ── rainbow tab colors (inactive = slightly dimmed) ── */
+    .hero-tab--intro    { background: #1ab8e8; }   /* sky blue   */
+    .hero-tab--peach    { background: #0fd4a0; }   /* teal       */
+    .hero-tab--sky      { background: #5ecb50; }   /* green      */
+    .hero-tab--rose     { background: #ffc31a; }   /* yellow     */
+    .hero-tab--mint     { background: #ff8c20; }   /* orange     */
+    .hero-tab--lavender { background: #ff3d6e; }   /* coral-red  */
 
-        .section-label {
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            color: var(--gray);
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-        .career-heading {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(60px, 10vw, 130px);
-            line-height: 0.88;
-            color: var(--black);
-            margin-bottom: 80px;
-        }
-        .career-heading span {
-            display: block;
-        }
-        .career-heading .out {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--black);
-            padding-left: 1em;
-        }
+    /* inactive = slightly translucent to distinguish from active */
+    .hero-tab:not(.hero-tab--active) { opacity: .72; }
 
-        /* Timeline — editorial */
-        .tl {
-            position: relative;
-        }
-        .tl::before {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            left: 50%;
-            width: 1px;
-            background: rgba(0,0,0,0.12);
-            transform: translateX(-50%);
-        }
-        .tl-entry {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-bottom: 96px;
-            position: relative;
-        }
-        .tl-entry::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 9px; height: 9px;
-            background: var(--warm);
-            border: 1.5px solid rgba(0,0,0,0.3);
-            border-radius: 50%;
-            z-index: 2;
-        }
-        .tl-entry.now::before { background: var(--black); }
+    /* active = full color, taller, no bottom border — merges into card */
+    .hero-tab--active {
+      opacity: 1 !important;
+      height: 52px !important;
+      border-color: rgba(0,0,0,.08) !important;
+      color: rgba(0,0,0,.75) !important;
+      /* background set by JS to match card */
+    }
 
-        /* LEFT entry: info col-1 right-aligned, photos col-2 */
-        .tl-L .tl-info   { grid-column: 1; text-align: right; padding: 0 52px 0 0; }
-        .tl-L .tl-photos { grid-column: 2; padding: 0 0 0 52px; }
+    /* main colored card */
+    .hero-card-main {
+      background: #1ab8e8;         /* default = About blue; overridden by JS */
+      border-radius: 0 20px 20px 20px;
+      padding: 48px 56px 52px;
+      box-shadow: rgba(0,0,0,.18) 0 12px 40px -4px;
+      transition: background .25s ease, border-radius .12s;
+    }
 
-        /* RIGHT entry: photos col-1, info col-2 left-aligned */
-        .tl-R .tl-info   { grid-column: 2; grid-row: 1; text-align: left; padding: 0 0 0 52px; }
-        .tl-R .tl-photos { grid-column: 1; grid-row: 1; padding: 0 52px 0 0; }
+    /* ── panel show / hide ── */
+    .hero-panel { display: none; }
+    .hero-panel--active { display: block; }
 
-        .tl-year {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(44px, 6vw, 80px);
-            line-height: 0.88;
-            color: var(--black);
-            display: block;
-            letter-spacing: -0.01em;
-            margin-bottom: 14px;
-        }
-        .tl-co {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--black);
-            margin-bottom: 4px;
-            letter-spacing: 0.02em;
-        }
-        .tl-role {
-            font-size: 12px;
-            font-weight: 300;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        .tl-now-badge {
-            display: inline-block;
-            margin-top: 10px;
-            background: var(--black);
-            color: var(--white);
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            padding: 3px 8px;
-            text-transform: uppercase;
-        }
+    /* ── all card text: dark on vivid backgrounds ── */
+    .hero-card-eyebrow {
+      font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: rgba(0,0,0,.50);
+      margin-bottom: 16px;
+    }
+    /* remove old eyebrow color overrides — all panels use same dark */
+    .hero-card-eyebrow--peach,
+    .hero-card-eyebrow--sky,
+    .hero-card-eyebrow--rose,
+    .hero-card-eyebrow--mint,
+    .hero-card-eyebrow--lavender { color: rgba(0,0,0,.50); }
 
-        /* Photo placeholders */
-        .tl-photos {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .ph-duo { display: flex; gap: 8px; }
-        .ph {
-            background: rgba(0,0,0,0.04);
-            border: 1px dashed rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .ph::after {
-            content: 'PHOTO';
-            font-size: 8px;
-            letter-spacing: 0.2em;
-            color: rgba(0,0,0,0.15);
-            font-family: 'Bebas Neue', sans-serif;
-        }
-        .ph-top-port { width: 62%; aspect-ratio: 3/4; }
-        .ph-top-land { width: 100%; aspect-ratio: 4/3; }
-        .ph-mid-land { flex: 3; aspect-ratio: 4/3; }
-        .ph-mid-sq   { flex: 2; aspect-ratio: 1; }
-        .ph-mid-port { flex: 2; aspect-ratio: 3/4; }
+    .hero-card-title {
+      font-size: clamp(56px, 9vw, 108px); font-weight: 900;
+      color: rgba(0,0,0,.88); line-height: .94; letter-spacing: -3px;
+      margin-bottom: 20px;
+    }
+    .hero-card-desc {
+      font-size: 14px; color: rgba(0,0,0,.62); line-height: 1.65;
+      max-width: 480px; margin-bottom: 28px;
+    }
+    .hero-card-stats {
+      display: flex; align-items: center;
+      border-top: 1px solid rgba(0,0,0,.15);
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      padding: 16px 0; margin-bottom: 28px;
+    }
+    .hcs-item { flex: 1; text-align: center; }
+    .hcs-val { font-size: 16px; font-weight: 800; color: rgba(0,0,0,.88); letter-spacing: -.5px; }
+    .hcs-key { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(0,0,0,.48); margin-top: 4px; }
+    .hcs-divider { width: 1px; height: 32px; background: rgba(0,0,0,.15); flex-shrink: 0; }
 
-        /* ══════════════════════════
-           04 — LIFESTYLE  (사진만으로)
-        ══════════════════════════ */
-        .lifestyle {
-            background: var(--white);
-            padding: 100px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0;
-            align-items: end;
-        }
+    .hero-card-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero-cta-btn-primary {
+      background: rgba(0,0,0,.82); color: #fff; font-size: 13px; font-weight: 700;
+      padding: 10px 22px; border-radius: var(--r-md);
+      text-decoration: none; display: inline-block; transition: opacity .15s;
+    }
+    .hero-cta-btn-primary:hover { opacity: .75; text-decoration: none; color: #fff; }
+    .hero-cta-btn-outline {
+      background: transparent; color: rgba(0,0,0,.80); font-size: 13px; font-weight: 700;
+      padding: 10px 22px; border-radius: var(--r-md);
+      border: 1.5px solid rgba(0,0,0,.35);
+      text-decoration: none; display: inline-block; transition: border-color .15s;
+    }
+    .hero-cta-btn-outline:hover { border-color: rgba(0,0,0,.70); text-decoration: none; color: rgba(0,0,0,.88); }
 
-        .ls-block {
-            position: relative;
-            overflow: hidden;
-        }
-        /* 사이즈 변주 */
-        .ls-block:nth-child(1) { margin-top: 80px; }
-        .ls-block:nth-child(3) { margin-top: 40px; }
+    /* category panels */
+    .hero-panel-title {
+      font-size: clamp(38px, 6.5vw, 76px); font-weight: 900;
+      color: rgba(0,0,0,.88); line-height: .95; letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero-project-list {
+      list-style: none; margin-bottom: 24px;
+      border-top: 1px solid rgba(0,0,0,.15);
+    }
+    .hero-project-list li {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.12);
+      font-size: 13px;
+    }
+    .hpl-num  { font-size: 10px; font-weight: 800; color: rgba(0,0,0,.40); letter-spacing: .5px; min-width: 26px; }
+    .hpl-name { flex: 1; color: rgba(0,0,0,.82); font-weight: 600; }
+    .hpl-year { font-size: 11px; color: rgba(0,0,0,.45); }
+    .hero-panel-link {
+      font-size: 12px; font-weight: 800; letter-spacing: .5px;
+      color: rgba(0,0,0,.80); text-decoration: none;
+      border-bottom: 2px solid rgba(0,0,0,.50); padding-bottom: 1px;
+      display: inline-block;
+    }
+    .hero-panel-link:hover { opacity: .60; text-decoration: none; }
 
-        .ls-block img {
-            width: 100%;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(15%);
-            transition: filter 0.4s ease, transform 0.4s ease;
-        }
-        .ls-block:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.02);
-        }
-        .ls-label {
-            margin-top: 10px;
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            color: var(--gray);
-            text-transform: uppercase;
-            padding: 0 16px;
-        }
+    /* contact panel */
+    .hero-contact-items {
+      display: flex; flex-direction: column;
+      border-top: 1px solid rgba(0,0,0,.15); margin-bottom: 28px;
+    }
+    .hero-contact-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,.12);
+      text-decoration: none;
+    }
+    .hero-contact-item:hover { text-decoration: none; }
+    .hci-label { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: rgba(0,0,0,.45); min-width: 70px; }
+    .hci-val   { font-size: 14px; font-weight: 600; color: rgba(0,0,0,.82); }
+    .hero-contact-item:hover .hci-val { color: rgba(0,0,0,1); }
 
-        /* ══════════════════════════
-           05 — CONTACT
-        ══════════════════════════ */
-        .contact {
-            background: var(--black);
-            padding: 100px 40px;
-        }
-        .contact-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: end;
-            gap: 40px;
-        }
-        .contact-heading {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(60px, 10vw, 120px);
-            line-height: 0.88;
-            color: var(--white);
-        }
-        .contact-heading span { display: block; }
-        .contact-heading .out {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--white);
-            padding-left: 0.6em;
-        }
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .contact-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 0.04em;
-            transition: color 0.2s;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            padding-bottom: 14px;
-        }
-        .contact-links a:last-child { border-bottom: none; padding-bottom: 0; }
-        .contact-links a:hover { color: var(--white); }
-        .contact-foot {
-            grid-column: 1 / -1;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 24px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            color: rgba(255,255,255,0.25);
-            text-transform: uppercase;
-        }
+    @media (max-width: 640px) {
+      .hero-card-main { padding: 32px 24px 36px; border-radius: 0 16px 16px 16px !important; }
+      .hero-tab { font-size: 8px; letter-spacing: .8px; }
+      .hero-tabs { gap: 3px; }
+    }
 
-        /* ══════════════════════════
-           RESPONSIVE
-        ══════════════════════════ */
-        @media (max-width: 768px) {
-            nav { padding: 18px 20px; }
+    /* ─────────────────────────────────────────────────────────────
+       SECTION COMMON
+    ───────────────────────────────────────────────────────────── */
+    .section { padding: 80px 32px; }
+    .section-alt { background: var(--surface-soft); }
+    .container { max-width: 1280px; margin: 0 auto; }
 
-            .hero { grid-template-columns: 1fr; min-height: auto; }
-            .hero-left { padding: 100px 24px 40px; justify-content: flex-start; }
-            .hero-right { height: 70vw; min-height: 300px; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--steel);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 600;
+      color: var(--ink); line-height: 1.2; letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 16px; color: var(--slate); line-height: 1.6;
+      max-width: 720px;
+    }
 
-            .about { grid-template-columns: 1fr; padding: 72px 24px; }
-            .about-photo { width: 160px; height: 200px; }
+    /* ─────────────────────────────────────────────────────────────
+       ABOUT SECTION
+    ───────────────────────────────────────────────────────────── */
+    /* ─── ABOUT REDESIGN ─── */
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 52px;
+      align-items: start;
+      margin-top: 48px;
+      margin-bottom: 52px;
+    }
 
-            .career { padding: 72px 24px; }
-            .tl::before { left: 20px; }
-            .tl-entry { grid-template-columns: 1fr; margin-bottom: 64px; }
-            .tl-entry::before { left: 20px; top: 28px; }
-            .tl-L .tl-info,
-            .tl-R .tl-info   { grid-column: 1; text-align: left; padding: 0 0 0 44px; }
-            .tl-L .tl-photos,
-            .tl-R .tl-photos { grid-column: 1; grid-row: 2; padding: 16px 0 0 44px; }
+    /* photo column */
+    .about-photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .about-photo-frame {
+      position: relative;
+      width: 200px;
+      height: 210px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .about-photo-circle {
+      width: 192px;
+      height: 192px;
+      border-radius: 50%;
+      background: #0fd4a0;
+      overflow: hidden;
+      border: 5px solid #fff;
+      box-shadow: 0 10px 36px rgba(0,0,0,.14);
+      flex-shrink: 0;
+    }
+    .about-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%;
+    }
+    .about-spark {
+      position: absolute;
+      display: block;
+      line-height: 1;
+    }
+    .about-spark-1 { top: -4px; right: 6px; }
+    .about-spark-2 { top: 20px; left: -2px; }
+    .about-spark-3 { bottom: 28px; right: -6px; }
 
-            .lifestyle { grid-template-columns: 1fr 1fr; padding: 72px 24px; gap: 8px; }
-            .ls-block:nth-child(1),
-            .ls-block:nth-child(3) { margin-top: 0; }
+    /* greeting pill (Dancing Script) */
+    .about-greeting {
+      display: inline-block;
+      border: 2.5px solid var(--ink);
+      border-radius: 9999px;
+      padding: 8px 22px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
 
-            .contact { padding: 72px 24px; }
-            .contact-inner { grid-template-columns: 1fr; }
-        }
-    </style>
+    /* bio column */
+    .about-name {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .about-role-line {
+      font-size: 13px;
+      color: var(--slate);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .about-bio {
+      font-size: 15px;
+      color: var(--charcoal);
+      line-height: 1.85;
+    }
+    .about-bio p + p { margin-top: 14px; }
+
+    /* pill section headings */
+    .about-pill-label {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      padding: 9px 26px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* skill chips — outlined pill style */
+    .skills-pill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 52px;
+    }
+    .skill-pill {
+      border: 1.5px solid var(--charcoal);
+      border-radius: 9999px;
+      padding: 7px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      white-space: nowrap;
+    }
+    .skill-pill--icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding-left: 10px;
+    }
+    .skill-pill--icon-only {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+    }
+    .skill-icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    /* ── SOFTWARE skill bars ── */
+    .software-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px 16px;
+      margin-bottom: 52px;
+    }
+    .sw-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      width: 58px;
+    }
+    .sw-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+    .sw-name {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--steel);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .sw-bar-track {
+      width: 100%;
+      height: 5px;
+      background: var(--hairline);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .sw-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #1ab8e8 0%, #0fd4a0 100%);
+    }
+
+    /* education / certs two-col grid */
+    .about-edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .about-edu-block { }
+
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item {
+      display: flex; gap: 14px; padding: 11px 0;
+      border-bottom: 1px solid var(--hairline);
+      font-size: 13.5px;
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-year { font-weight: 700; color: var(--primary); min-width: 64px; flex-shrink: 0; }
+    .tl-text { color: var(--charcoal); line-height: 1.5; }
+
+    /* ─────────────────────────────────────────────────────────────
+       PROJECT CATEGORY BANNER
+    ───────────────────────────────────────────────────────────── */
+    .cat-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 52px 56px 48px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 180px;
+      border-top: none;
+    }
+    /* 좌측 강조 바 (Type 2) */
+    .cat-banner::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 7px;
+      background: rgba(0,0,0,.18);
+    }
+    /* 배경 고스트 번호 (우측 하단) */
+    .cat-number {
+      position: absolute;
+      right: 32px;
+      bottom: -16px;
+      font-size: 180px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -6px;
+      color: rgba(0,0,0,.07);
+      pointer-events: none;
+      user-select: none;
+    }
+    /* 소형 카테고리 레이블 (Type 2) */
+    .cat-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.45);
+      margin-bottom: 10px;
+    }
+    .cat-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      color: rgba(0,0,0,.82);
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+    }
+    .cat-desc {
+      font-size: 14px;
+      color: rgba(0,0,0,.50);
+      margin-top: 10px;
+      font-weight: 400;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       PROJECT CARDS GRID
+    ───────────────────────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      padding: 24px 32px 80px;
+    }
+    .project-card {
+      --ac: #5645d4;
+      border-radius: var(--r-lg);
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .project-card:hover {
+      box-shadow: 0 10px 32px rgba(0,0,0,.13);
+      transform: translateY(-4px);
+    }
+
+    /* ── image zone ── */
+    .project-img {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: var(--ac);
+      flex-shrink: 0;
+    }
+    .project-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        135deg,
+        transparent 0px, transparent 18px,
+        rgba(255,255,255,.05) 18px, rgba(255,255,255,.05) 36px
+      );
+      pointer-events: none;
+    }
+    .project-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    /* ── slider ── */
+    .slider-track {
+      display: flex;
+      width: 100%; height: 100%;
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .slider-slide {
+      flex: 0 0 100%;
+      width: 100%; height: 100%;
+    }
+    .slider-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .slider-btn {
+      position: absolute; top: 50%; z-index: 2;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.88);
+      border: none; border-radius: 50%;
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 20px; line-height: 1;
+      color: #1a1a1a;
+      box-shadow: 0 2px 8px rgba(0,0,0,.22);
+      opacity: 0; transition: opacity .2s;
+      padding: 0;
+    }
+    .project-card:hover .slider-btn { opacity: 1; }
+    .slider-btn:hover { background: #fff; }
+    .slider-btn--prev { left: 9px; }
+    .slider-btn--next { right: 9px; }
+    .slider-dots {
+      position: absolute; bottom: 9px; left: 50%; z-index: 2;
+      transform: translateX(-50%);
+      display: flex; gap: 5px;
+    }
+    .slider-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,.55); cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .slider-dot--active { background: #fff; transform: scale(1.25); }
+
+    /* ── content zone ── */
+    .project-body {
+      padding: 18px 20px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      border-left: 4px solid var(--ac);
+    }
+    .project-num {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ac); opacity: .85;
+    }
+    .project-title {
+      font-size: 17px; font-weight: 700; color: var(--charcoal);
+      line-height: 1.35;
+    }
+    .project-period {
+      font-size: 11.5px; font-weight: 600; color: var(--steel);
+      background: var(--surface); display: inline-block;
+      padding: 2px 8px; border-radius: var(--r-sm);
+      align-self: flex-start;
+    }
+    .project-desc {
+      font-size: 13.5px; color: var(--slate); line-height: 1.65;
+      flex: 1;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px;
+    }
+    .tag {
+      font-size: 11px; font-weight: 600; border-radius: var(--r-sm);
+      padding: 3px 8px; background: rgba(86,69,212,.08); color: #3a2a99;
+    }
+    .tag-orange { background: var(--tint-peach); color: var(--brand-orange); }
+    .tag-green  { background: var(--tint-mint);  color: #0d7a27; }
+    .tag-blue   { background: var(--tint-sky);   color: #0058a8; }
+
+    /* ─────────────────────────────────────────────────────────────
+       CAREER TIMELINE SECTION
+    ───────────────────────────────────────────────────────────── */
+    .career-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+    .career-item {
+      display: flex; gap: 32px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--hairline);
+    }
+    .career-item:last-child { border-bottom: none; }
+    .career-period {
+      font-size: 13px; font-weight: 500; color: var(--primary);
+      min-width: 120px; margin-top: 3px;
+    }
+    .career-body { flex: 1; }
+    .career-company {
+      font-size: 17px; font-weight: 600; color: var(--charcoal);
+    }
+    .career-role {
+      font-size: 14px; color: var(--steel); margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       CONTACT EDITORIAL (wood + polaroid)
+    ───────────────────────────────────────────────────────────── */
+    .contact-editorial {
+      position: relative;
+      min-height: 700px;
+    }
+    /* dark wood texture band — top 270px */
+    .contact-editorial::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 270px;
+      background:
+        repeating-linear-gradient(93deg,
+          rgba(0,0,0,0)    0px, rgba(0,0,0,0)     9px,
+          rgba(0,0,0,.06)  9px, rgba(0,0,0,.06)  10px,
+          rgba(0,0,0,0)   10px, rgba(0,0,0,0)    24px,
+          rgba(8,0,0,.04) 24px, rgba(8,0,0,.04)  25px,
+          rgba(0,0,0,0)   25px, rgba(0,0,0,0)    44px,
+          rgba(0,0,0,.03) 44px, rgba(0,0,0,.03)  45px
+        ),
+        repeating-linear-gradient(177deg,
+          rgba(0,0,0,0) 0px, rgba(0,0,0,0) 55px,
+          rgba(0,0,0,.025) 55px, rgba(0,0,0,.025) 57px
+        ),
+        linear-gradient(165deg, #7b3219 0%, #531808 28%, #310d05 58%, #1c0803 100%);
+      z-index: 0;
+    }
+    /* light gray panel that sits over the wood */
+    .contact-panel {
+      position: relative;
+      z-index: 1;
+      margin-top: 228px;
+      background: #eee8da;
+      padding: 52px 56px 72px;
+      min-height: 480px;
+    }
+    .contact-panel-inner { max-width: 500px; }
+
+    /* polaroid: spans wood/gray boundary */
+    .contact-polaroid-wrap {
+      position: absolute;
+      top: 62px;
+      right: max(7%, 48px);
+      z-index: 3;
+      transform: rotate(13deg);
+      transform-origin: center top;
+      width: 258px;
+    }
+    .contact-paperclip {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-18%);
+    }
+    .contact-polaroid {
+      background: #ffffff;
+      padding: 10px 10px 38px;
+      box-shadow: 0 14px 52px rgba(0,0,0,.42), 0 3px 10px rgba(0,0,0,.18);
+    }
+    .contact-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: center 10%;
+    }
+
+    /* heading */
+    .contact-heading {
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      color: #1a1a1a;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .contact-sub {
+      font-size: 11px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: #7a7873;
+      margin-bottom: 44px;
+    }
+
+    /* script label rows */
+    .contact-rows { margin-bottom: 36px; }
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+    .contact-row:first-child { border-top: 1px solid rgba(0,0,0,.1); }
+    .contact-script-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 23px;
+      font-weight: 600;
+      color: #1a1a1a;
+      min-width: 108px;
+      flex-shrink: 0;
+      line-height: 1.3;
+    }
+    .contact-row-text {
+      font-size: 14px;
+      color: #5d5b54;
+      line-height: 1.5;
+    }
+    .contact-row-text a {
+      color: #5d5b54;
+      text-decoration: none;
+    }
+    .contact-row-text a:hover { text-decoration: underline; }
+
+    /* keyword tags line */
+    .contact-keywords {
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #9a9790;
+      line-height: 2;
+      max-width: 460px;
+    }
+
+    /* hero contact panel extras */
+    .hero-contact-keywords {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.48);
+      line-height: 2;
+      margin-bottom: 20px;
+    }
+    .hero-contact-copy {
+      font-size: 11px;
+      color: rgba(0,0,0,.38);
+      letter-spacing: .4px;
+      margin-top: 22px;
+      border-top: 1px solid rgba(0,0,0,.1);
+      padding-top: 14px;
+    }
+
+    footer {
+      background: #eee8da;
+      border-top: 1px solid rgba(0,0,0,.08);
+      padding: 20px 56px;
+      text-align: left;
+      font-size: 12px;
+      color: #9a9790;
+      letter-spacing: .5px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       PERSPECTIVE BANNER
+    ───────────────────────────────────────────────────────────── */
+    .perspective-banner {
+      background: #112d27;
+      padding: 72px 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .pb-inner { width: 100%; max-width: 620px; }
+    .pb-frame {
+      background: #c6e9d8;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 28px 72px rgba(0,0,0,.45);
+    }
+    .pb-chrome { padding: 12px 14px 0; }
+    .pb-chrome-top { display: flex; align-items: center; padding-bottom: 10px; }
+    .pb-dots { display: flex; gap: 6px; }
+    .pb-dots span { width: 12px; height: 12px; border-radius: 50%; background: #112d27; opacity: .28; }
+    .pb-chrome-bar { display: flex; align-items: stretch; gap: 8px; }
+    .pb-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #c6e9d8; border-radius: 10px 10px 0 0;
+      padding: 8px 14px 12px 10px; font-size: 13px; font-weight: 600; color: #112d27;
+    }
+    .pb-url {
+      flex: 1; background: #112d27; color: #c6e9d8;
+      border-radius: 9999px; padding: 9px 20px; font-size: 13px; font-weight: 500;
+      display: flex; align-items: center; justify-content: flex-start;
+      gap: 9px; letter-spacing: .1px; margin-bottom: 10px;
+    }
+    .pb-body { background: #112d27; padding: 40px 36px 52px; }
+    .pb-label {
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(198,233,216,.55); margin-bottom: 16px;
+    }
+    .pb-headline {
+      font-size: clamp(44px, 8vw, 88px); font-weight: 900;
+      letter-spacing: -2px; line-height: .95; color: #c6e9d8;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RADAR PROFILE SECTION
+    ───────────────────────────────────────────────────────────── */
+    .radar-section { background: #edf7f2; padding: 80px 0 60px; }
+    .radar-inner {
+      display: grid; grid-template-columns: 3fr 2fr; gap: 56px;
+      align-items: center; max-width: 1080px; margin: 0 auto; padding: 0 32px;
+    }
+    .radar-svg-wrap { width: 100%; }
+    .radar-svg { width: 100%; height: auto; }
+    .radar-label { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; fill: #5d5b54; }
+    .radar-data-group {
+      transform-origin: 300px 260px; transform: scale(0);
+      transition: transform .8s cubic-bezier(.34,1.56,.64,1);
+    }
+    .radar-data-group.radar-animated { transform: scale(1); }
+    .radar-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #1ab8e8; margin-bottom: 10px;
+    }
+    .radar-heading {
+      font-size: clamp(28px, 3.5vw, 40px); font-weight: 900;
+      letter-spacing: -1px; color: #1a1a1a; margin-bottom: 28px;
+    }
+    .radar-axes-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .radar-axes-list li {
+      display: flex; flex-direction: column; gap: 3px;
+      padding-left: 12px; border-left: 3px solid #1ab8e8;
+    }
+    .ral-name { font-size: 13px; font-weight: 700; color: #1a1a1a; letter-spacing: .2px; }
+    .ral-desc { font-size: 12px; color: #787671; line-height: 1.5; }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-email-text { display: none; }
+
+      /* hero — 탭 너비를 flex: 1로 분배, 화면 폭에 맞게 균등 축소 */
+      .hero { padding: 60px 16px 48px; }
+      .hero-editorial { padding-top: 44px; }
+      .hero-tabs { gap: 2px; }
+      .hero-tab {
+        flex: 1; min-width: 0; width: auto;
+        font-size: 7px; letter-spacing: .4px; height: 36px;
+      }
+      .hero-tab--active { height: 44px !important; }
+      .hero-card-main { padding: 28px 20px 32px; }
+
+      .hero-card { grid-template-columns: 1fr; }
+      .about-hero-grid { grid-template-columns: 1fr; }
+      .about-photo-col { margin-bottom: 8px; }
+      .about-edu-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; padding: 24px 16px 48px; }
+      .section { padding: 56px 16px; }
+      .cat-banner { padding: 32px 16px; }
+      .cat-number { font-size: 48px; }
+      .career-item { flex-direction: column; gap: 8px; }
+      .slider-btn { opacity: 1 !important; width: 26px; height: 26px; font-size: 16px; }
+
+      /* perspective + radar mobile */
+      .perspective-banner { padding: 48px 20px; }
+      .pb-headline { font-size: 44px; }
+      .radar-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 16px; }
+      .radar-svg-wrap { max-width: 380px; margin: 0 auto; }
+      .radar-section { padding: 56px 0 48px; }
+
+      /* contact editorial — mobile */
+      .contact-editorial { min-height: auto; }
+      .contact-editorial::before { height: 200px; }
+      .contact-panel { margin-top: 168px; padding: 36px 24px 52px; min-height: auto; }
+      .contact-polaroid-wrap {
+        top: 18px; right: 16px; width: 130px; transform: rotate(10deg);
+      }
+      .contact-paperclip { top: -34px; }
+      .contact-heading { font-size: 26px; }
+      .contact-sub { margin-bottom: 28px; }
+      .contact-script-label { min-width: 88px; font-size: 20px; }
+      .contact-caption { font-size: 10px; }
+      footer { padding: 18px 24px; }
+    }
+
+    @media (max-width: 420px) {
+      .contact-polaroid-wrap { display: none; }
+      .contact-panel { margin-top: 140px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-    <a href="#" class="nav-name">JIHYUN KIM</a>
-    <span class="nav-right">Brand Manager · Planner</span>
+<!-- ── NAV ────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" style="font-weight:800;">Portfolio</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#product">상품&amp;콘텐츠</a>
+      <a href="#platform">브랜딩&amp;웹기획</a>
+      <a href="#promo">프로모션</a>
+      <a href="#space">공간기획</a>
+      <a href="#contact">연락처</a>
+    </div>
+    <a href="mailto:md.jihyun@gmail.com" class="btn-primary" style="display:flex;align-items:center;gap:7px;">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="nav-email-text">md.jihyun@gmail.com</span>
+    </a>
+  </div>
 </nav>
 
-
-<!-- ══ 01 HERO ══ -->
+<!-- ── HERO ───────────────────────────────────────────────────────── -->
 <section class="hero">
+  <div class="hero-editorial">
 
-    <div class="hero-left">
-        <span class="hero-issue">Vol. 2026 — Personal</span>
+    <!-- ── 6 folder tabs ── -->
+    <div class="hero-tabs">
+      <div class="hero-tab hero-tab--intro  hero-tab--active" data-panel="panel-intro"    data-color="#1ab8e8">About</div>
+      <div class="hero-tab hero-tab--peach"                   data-panel="panel-product"  data-color="#0fd4a0">MD&amp;IP</div>
+      <div class="hero-tab hero-tab--sky"                     data-panel="panel-platform" data-color="#5ecb50">Branding</div>
+      <div class="hero-tab hero-tab--rose"                    data-panel="panel-promo"    data-color="#ffc31a">Promotion</div>
+      <div class="hero-tab hero-tab--mint"                    data-panel="panel-space"    data-color="#ff8c20">Space</div>
+      <div class="hero-tab hero-tab--lavender"                data-panel="panel-contact"  data-color="#ff3d6e">Contact</div>
+    </div>
 
-        <div>
-            <h1 class="hero-name">
-                KIM<br>
-                <span class="outline">JIHYUN</span>
-            </h1>
-            <div class="hero-divider"></div>
-            <p class="hero-label">Brand Manager · Planner · 17 Yrs</p>
-            <p class="hero-tagline">
-                상품을 만들고,<br>
-                브랜드를 키우고,<br>
-                온라인 사업을 설계합니다.
-            </p>
+    <!-- ── main card ── -->
+    <div class="hero-card-main">
+
+      <!-- PANEL 1: 소개 -->
+      <div class="hero-panel hero-panel--active" id="panel-intro">
+        <p class="hero-card-eyebrow">Content &amp; Product Planning</p>
+        <h1 class="hero-card-title">JIHYUN<br>KIM</h1>
+        <p class="hero-card-desc">WHY와 HOW의 여정을 찾아가는 기획자</p>
+        <div class="hero-card-stats">
+          <div class="hcs-item"><div class="hcs-val">Life Style</div></div>
+          <div class="hcs-divider"></div>
+          <div class="hcs-item"><div class="hcs-val">E-commerce</div></div>
+          <div class="hcs-divider"></div>
+          <div class="hcs-item"><div class="hcs-val">Entertainment</div></div>
+          <div class="hcs-divider"></div>
+          <div class="hcs-item"><div class="hcs-val">Kids Space</div></div>
         </div>
-    </div>
+        <div class="hero-card-cta">
+          <a href="#product" class="hero-cta-btn-primary">프로젝트 보기</a>
+          <a href="#about" class="hero-cta-btn-outline">소개 더 보기</a>
+        </div>
+      </div>
 
-    <div class="hero-right">
-        <img class="hero-photo" src="image/me 2.jpeg" alt="">
-        <span class="hero-caption">Kim Jihyun · 2026</span>
-    </div>
+      <!-- PANEL 2: 제품기획 -->
+      <div class="hero-panel" id="panel-product">
+        <p class="hero-card-eyebrow hero-card-eyebrow--peach">Category 01</p>
+        <h2 class="hero-panel-title">상품&amp;콘텐츠<br>MD</h2>
+        <ul class="hero-project-list">
+          <li><span class="hpl-num">P01</span><span class="hpl-name">채널A '굿바이마눌' 드라마 가이드북</span><span class="hpl-year">2012</span></li>
+          <li><span class="hpl-num">P02</span><span class="hpl-name">류시원 레이싱다이어리 DVD 패키지</span><span class="hpl-year">2013–14</span></li>
+          <li><span class="hpl-num">P03</span><span class="hpl-name">몽베스트 제품패키지 기획 및 리뉴얼</span><span class="hpl-year">2021–23</span></li>
+          <li><span class="hpl-num">P04</span><span class="hpl-name">몽베스트 드림체 기업전용서체 개발</span><span class="hpl-year">2020–21</span></li>
+          <li><span class="hpl-num">P05</span><span class="hpl-name">MONTZINE 웹매거진 릴리즈</span><span class="hpl-year">2022–24</span></li>
+          <li><span class="hpl-num">P06</span><span class="hpl-name">베스트프렌즈 모모&amp;코코 자석코디</span><span class="hpl-year">2017–19</span></li>
+          <li><span class="hpl-num">P07</span><span class="hpl-name">아리아띠 자석포스터</span><span class="hpl-year">2017–19</span></li>
+        </ul>
+        <a href="#product" class="hero-panel-link">전체 내용 보기 →</a>
+      </div>
 
+      <!-- PANEL 3: 플랫폼·창업 -->
+      <div class="hero-panel" id="panel-platform">
+        <p class="hero-card-eyebrow hero-card-eyebrow--sky">Category 02</p>
+        <h2 class="hero-panel-title">브랜딩 &amp;<br>웹기획</h2>
+        <ul class="hero-project-list">
+          <li><span class="hpl-num">P01</span><span class="hpl-name">몽샵 쇼핑몰 개발 &amp; 리뉴얼 프로젝트</span><span class="hpl-year">2021–22</span></li>
+          <li><span class="hpl-num">P02</span><span class="hpl-name">마요앤코 개인쇼핑몰 창업</span><span class="hpl-year">2017–19</span></li>
+          <li><span class="hpl-num">P03</span><span class="hpl-name">유아동 쇼핑몰 창업컨설팅 &amp; 운영대행</span><span class="hpl-year">2016–17</span></li>
+          <li><span class="hpl-num">P04</span><span class="hpl-name">K뷰티 역직구몰 리뉴얼 PM</span><span class="hpl-year">2019–20</span></li>
+        </ul>
+        <a href="#platform" class="hero-panel-link">전체 내용 보기 →</a>
+      </div>
+
+      <!-- PANEL 4: 프로모션 -->
+      <div class="hero-panel" id="panel-promo">
+        <p class="hero-card-eyebrow hero-card-eyebrow--rose">Category 03</p>
+        <h2 class="hero-panel-title">프로모션<br>기획</h2>
+        <ul class="hero-project-list">
+          <li><span class="hpl-num">P01</span><span class="hpl-name">몽베스트·몽샵 전사 프로모션 PM</span><span class="hpl-year">2019–25</span></li>
+          <li><span class="hpl-num">P02</span><span class="hpl-name">세일 전단지 기획 (체화재고 소진)</span><span class="hpl-year">2007</span></li>
+          <li><span class="hpl-num">P03</span><span class="hpl-name">류시원 생일 팬미팅 이벤트 총괄</span><span class="hpl-year">2011–14</span></li>
+        </ul>
+        <a href="#promo" class="hero-panel-link">전체 내용 보기 →</a>
+      </div>
+
+      <!-- PANEL 5: 공간기획 -->
+      <div class="hero-panel" id="panel-space">
+        <p class="hero-card-eyebrow hero-card-eyebrow--mint">Category 04</p>
+        <h2 class="hero-panel-title">공간기획<br>스토리텔링</h2>
+        <ul class="hero-project-list">
+          <li><span class="hpl-num">P01</span><span class="hpl-name">딸기가좋아 키즈카페 IP 공간 스토리텔링</span><span class="hpl-year">2014–15</span></li>
+          <li><span class="hpl-num">P02</span><span class="hpl-name">똥빵 키오스크 스토어 기획 및 오픈</span><span class="hpl-year">2015</span></li>
+        </ul>
+        <a href="#space" class="hero-panel-link">전체 내용 보기 →</a>
+      </div>
+
+      <!-- PANEL 6: 연락처 -->
+      <div class="hero-panel" id="panel-contact">
+        <p class="hero-card-eyebrow hero-card-eyebrow--lavender">Contact</p>
+        <h2 class="hero-panel-title">Contact<br>me.</h2>
+        <p class="hero-contact-keywords">Branding · Content · Commerce<br>IP Business · E-commerce · Consumer Experience</p>
+        <div class="hero-contact-items">
+          <a href="tel:+821032021179" class="hero-contact-item">
+            <span class="hci-label">Phone</span>
+            <span class="hci-val">010-3202-1179</span>
+          </a>
+          <a href="mailto:md.jihyun@gmail.com" class="hero-contact-item">
+            <span class="hci-label">Email</span>
+            <span class="hci-val">md.jihyun@gmail.com</span>
+          </a>
+          <a href="https://www.instagram.com/hyuna505" target="_blank" class="hero-contact-item">
+            <span class="hci-label">Instagram</span>
+            <span class="hci-val">@hyuna505</span>
+          </a>
+        </div>
+        <p class="hero-contact-copy">© 2026 Jihyun Kim · Content &amp; Product Planning Portfolio</p>
+      </div>
+
+    </div><!-- /.hero-card-main -->
+  </div><!-- /.hero-editorial -->
 </section>
 
+<!-- ── ABOUT ──────────────────────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="container">
 
-<!-- ══ 02 ABOUT ══ -->
-<section class="about">
+    <!-- ── PHOTO + BIO ── -->
+    <div class="about-hero-grid">
 
-    <div class="about-text">
-        <span class="about-big">브랜</span>
-        <span class="about-big indent">드매</span>
-        <span class="about-big outline">니저</span>
+      <!-- 사진 컬럼 -->
+      <div class="about-photo-col">
+        <div class="about-photo-frame">
+          <!-- sparkles -->
+          <span class="about-spark about-spark-1">
+            <svg width="28" height="28" viewBox="0 0 28 28"><path d="M14 0L15.8 12.2L28 14L15.8 15.8L14 28L12.2 15.8L0 14L12.2 12.2Z" fill="#ffc31a"/></svg>
+          </span>
+          <span class="about-spark about-spark-2">
+            <svg width="22" height="22" viewBox="0 0 22 22"><path d="M11 0L12.4 9.6L22 11L12.4 12.4L11 22L9.6 12.4L0 11L9.6 9.6Z" fill="#5ecb50"/></svg>
+          </span>
+          <span class="about-spark about-spark-3">
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 0L9.1 6.9L16 8L9.1 9.1L8 16L6.9 9.1L0 8L6.9 6.9Z" fill="#ff3d6e"/></svg>
+          </span>
+          <div class="about-photo-circle">
+            <img src="profile.JPG" alt="Jihyun Kim">
+          </div>
+        </div>
+        <div class="about-greeting">안녕하세요! 👋</div>
+      </div>
+
+      <!-- 바이오 컬럼 -->
+      <div>
+        <p class="about-name">JIHYUN KIM</p>
+        <p class="about-role-line">Content &amp; Product Planner · 18 Years</p>
+        <div class="about-bio">
+          <p>소비재유통업, 엔터테인먼트, 공간기획, 플랫폼비즈니스까지 다양한 산업영역에서 상품기획자 및 브랜드 마케터로써 직무를 이어오고 있습니다.</p>
+          <p>각 조직마다 신사업이나 프로젝트 단위의 큰 업무가 맡겨졌고, A to Z의 프로세스를 수행하고 책임지면서 넓은 시각에서 직무를 바라보고 코칭할 수 있는 리더로 성장하였습니다.</p>
+          <p>파트장, TF 리더, 팀장 등의 역할을 맡으며 크리에이터로서의 성장과 매니저로서의 역할 간의 균형을 유지해오고 있는 18년차 기획자입니다.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="about-right">
-        <img class="about-photo" src="image/me.jpeg" alt="">
-        <p class="about-desc">
-            유통·제조·엔터테인먼트까지,<br>
-            다양한 업종에서 상품과 브랜드를<br>
-            온라인으로 연결해온 17년차 기획자.<br><br>
-            구조를 설계하고,<br>
-            사람과 브랜드 사이를 잇습니다.
-        </p>
-        <p class="about-meta">Since 2005 · Seoul, Korea</p>
+    <!-- ── SKILLS ── -->
+    <div class="about-pill-label" style="background:#5ecb50;">SKILLS</div>
+    <div class="skills-pill-wrap">
+      <span class="skill-pill">상품기획</span>
+      <span class="skill-pill">콘텐츠기획</span>
+      <span class="skill-pill">브랜딩</span>
+      <span class="skill-pill">MD · IP 비즈니스</span>
+      <span class="skill-pill">웹기획</span>
+      <span class="skill-pill">E-Commerce</span>
+      <span class="skill-pill">공간기획</span>
+      <span class="skill-pill">프로모션 기획</span>
+      <span class="skill-pill">일본어</span>
     </div>
 
+    <!-- ── SOFTWARE ── -->
+    <div class="about-pill-label" style="background:#1ab8e8;">SOFTWARE</div>
+    <div class="software-grid">
+
+      <!-- Word 95% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="7" fill="#2B579A"/>
+            <text x="6" y="29" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="white">W</text>
+          </svg>
+        </div>
+        <div class="sw-name">Word</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:95%"></div></div>
+      </div>
+
+      <!-- Excel 85% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="7" fill="#217346"/>
+            <text x="8" y="29" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="white">X</text>
+          </svg>
+        </div>
+        <div class="sw-name">Excel</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:85%"></div></div>
+      </div>
+
+      <!-- PowerPoint 90% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="7" fill="#B7472A"/>
+            <text x="8" y="29" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="white">P</text>
+          </svg>
+        </div>
+        <div class="sw-name">PPT</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:90%"></div></div>
+      </div>
+
+      <!-- Photoshop 75% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="7" fill="#001D34"/>
+            <text x="4" y="28" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#31A8FF">Ps</text>
+          </svg>
+        </div>
+        <div class="sw-name">Photoshop</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:75%"></div></div>
+      </div>
+
+      <!-- Illustrator 65% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="7" fill="#2d0000"/>
+            <text x="4" y="28" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#FF9A00">Ai</text>
+          </svg>
+        </div>
+        <div class="sw-name">Illustrator</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:65%"></div></div>
+      </div>
+
+      <!-- Figma 65% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="26" height="40" viewBox="0 0 10 15" fill="none">
+            <path d="M5 0H2.5A2.5 2.5 0 0 0 2.5 5H5Z" fill="#F24E1E"/>
+            <circle cx="7.5" cy="2.5" r="2.5" fill="#FF7262"/>
+            <path d="M5 5H2.5A2.5 2.5 0 0 0 2.5 10H5Z" fill="#A259FF"/>
+            <circle cx="7.5" cy="7.5" r="2.5" fill="#1ABCFE"/>
+            <circle cx="2.5" cy="12.5" r="2.5" fill="#0ACF83"/>
+          </svg>
+        </div>
+        <div class="sw-name">Figma</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:65%"></div></div>
+      </div>
+
+      <!-- Slack 80% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="3" y="3" width="16" height="16" rx="4" fill="#36C5F0"/>
+            <rect x="21" y="3" width="16" height="16" rx="4" fill="#ECB22E"/>
+            <rect x="3" y="21" width="16" height="16" rx="4" fill="#E01E5A"/>
+            <rect x="21" y="21" width="16" height="16" rx="4" fill="#2EB67D"/>
+          </svg>
+        </div>
+        <div class="sw-name">Slack</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:80%"></div></div>
+      </div>
+
+      <!-- Notion 80% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="7" fill="#000"/>
+            <text x="8" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="white">N</text>
+          </svg>
+        </div>
+        <div class="sw-name">Notion</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:80%"></div></div>
+      </div>
+
+      <!-- Gemini 85% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <defs>
+              <linearGradient id="gem-g" x1="20" y1="2" x2="20" y2="38" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4285F4"/>
+                <stop offset="50%" stop-color="#0F9D58"/>
+                <stop offset="100%" stop-color="#4285F4"/>
+              </linearGradient>
+            </defs>
+            <path d="M20 2C20.9 10.5 25.5 15.5 38 20C25.5 24.5 20.9 29.5 20 38C19.1 29.5 14.5 24.5 2 20C14.5 15.5 19.1 10.5 20 2Z" fill="url(#gem-g)"/>
+          </svg>
+        </div>
+        <div class="sw-name">Gemini</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:85%"></div></div>
+      </div>
+
+      <!-- ChatGPT 85% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="8" fill="#0d0d0d"/>
+            <text x="5" y="27" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">GPT</text>
+          </svg>
+        </div>
+        <div class="sw-name">ChatGPT</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:85%"></div></div>
+      </div>
+
+      <!-- Claude 85% -->
+      <div class="sw-item">
+        <div class="sw-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <line x1="20" y1="5" x2="20" y2="35" stroke="#CC785C" stroke-width="5" stroke-linecap="round"/>
+            <line x1="5.4" y1="12.5" x2="34.6" y2="27.5" stroke="#CC785C" stroke-width="5" stroke-linecap="round"/>
+            <line x1="5.4" y1="27.5" x2="34.6" y2="12.5" stroke="#CC785C" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="sw-name">Claude</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" style="width:85%"></div></div>
+      </div>
+
+    </div>
+
+    <!-- ── EDUCATION · TRAINING · CERTS ── -->
+    <div class="about-edu-grid">
+
+      <div class="about-edu-block">
+        <div class="about-pill-label" style="background:#c4b5f7;">EDUCATION</div>
+        <div class="timeline">
+          <div class="tl-item"><span class="tl-year">2016.08</span><span class="tl-text">중앙대 신문방송대학원 PR전공 졸업</span></div>
+          <div class="tl-item"><span class="tl-year">2005.02</span><span class="tl-text">국민대학교 행정학과 졸업</span></div>
+          <div class="tl-item"><span class="tl-year">1999.02</span><span class="tl-text">부산남성여자고등학교 졸업</span></div>
+        </div>
+      </div>
+
+      <div class="about-edu-block">
+        <div class="about-pill-label" style="background:#1ab8e8; color:#fff;">TRAINING</div>
+        <div class="timeline">
+          <div class="tl-item"><span class="tl-year">2024</span><span class="tl-text">BEMYB 브랜딩스쿨 1기 수료</span></div>
+          <div class="tl-item"><span class="tl-year">2022</span><span class="tl-text">NCS 리더십코칭 과정 수료</span></div>
+          <div class="tl-item"><span class="tl-year">2017</span><span class="tl-text">NCS 웹디자인 실무양성과정 수료</span></div>
+          <div class="tl-item"><span class="tl-year">2010</span><span class="tl-text">일본어 어학연수 진학반 수료</span></div>
+          <div class="tl-item"><span class="tl-year">2005</span><span class="tl-text">아카비전 MD양성 26기 수료</span></div>
+        </div>
+      </div>
+
+      <div class="about-edu-block">
+        <div class="about-pill-label" style="background:#ff8c20; color:#fff;">CERTS</div>
+        <div class="timeline">
+          <div class="tl-item"><span class="tl-year">2025</span><span class="tl-text">일본어능력시험 JLPT 1급</span></div>
+          <div class="tl-item"><span class="tl-year">2025</span><span class="tl-text">CS 리더스 관리사 – 한국정보평가협회</span></div>
+          <div class="tl-item"><span class="tl-year">2010</span><span class="tl-text">일본판매사 2급 &amp; 3급 – 동경상공회의소</span></div>
+          <div class="tl-item"><span class="tl-year">2009</span><span class="tl-text">MOS Expert – Microsoft</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-
-<!-- ══ 03 CAREER ══ -->
-<section class="career" id="career">
-    <div class="career-inner">
-        <p class="section-label">Work History</p>
-        <div class="career-heading">
-            <span>CA</span>
-            <span class="out">RE</span>
-            <span>ER</span>
-        </div>
-
-        <div class="tl">
-
-            <!-- 2005 프라임인터내셔날 -->
-            <div class="tl-entry tl-L">
-                <div class="tl-info">
-                    <span class="tl-year">2005</span>
-                    <div class="tl-co">(주)프라임인터내셔날</div>
-                    <div class="tl-role">홈데코 MD · 글로벌 소싱</div>
-                </div>
-                <div class="tl-photos">
-                    <div class="ph ph-top-port"></div>
-                    <div class="ph-duo">
-                        <div class="ph ph-mid-land"></div>
-                        <div class="ph ph-mid-sq"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2011 알스컴퍼니 -->
-            <div class="tl-entry tl-R">
-                <div class="tl-info">
-                    <span class="tl-year">2011</span>
-                    <div class="tl-co">(주)알스컴퍼니</div>
-                    <div class="tl-role">팬덤 커머스 플랫폼 · 팀장</div>
-                </div>
-                <div class="tl-photos">
-                    <div class="ph ph-top-land"></div>
-                    <div class="ph-duo">
-                        <div class="ph ph-mid-port"></div>
-                        <div class="ph ph-mid-sq"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2014 서영이앤티 -->
-            <div class="tl-entry tl-L">
-                <div class="tl-info">
-                    <span class="tl-year">2014</span>
-                    <div class="tl-co">(주)서영이앤티</div>
-                    <div class="tl-role">키즈카페 브랜드 공간 기획 · 대리</div>
-                </div>
-                <div class="tl-photos">
-                    <div class="ph ph-top-port"></div>
-                    <div class="ph-duo">
-                        <div class="ph ph-mid-land"></div>
-                        <div class="ph ph-mid-sq"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2017 마그피아 -->
-            <div class="tl-entry tl-R">
-                <div class="tl-info">
-                    <span class="tl-year">2017</span>
-                    <div class="tl-co">(주)마그피아</div>
-                    <div class="tl-role">유아교구 브랜드 상품 기획 · 팀장</div>
-                </div>
-                <div class="tl-photos">
-                    <div class="ph ph-top-land"></div>
-                    <div class="ph-duo">
-                        <div class="ph ph-mid-port"></div>
-                        <div class="ph ph-mid-sq"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2019.03 파르크 -->
-            <div class="tl-entry tl-L">
-                <div class="tl-info">
-                    <span class="tl-year">2019</span>
-                    <div class="tl-co">(주)파르크</div>
-                    <div class="tl-role">K-뷰티 역직구 플랫폼 · 일본</div>
-                </div>
-                <div class="tl-photos">
-                    <div class="ph ph-top-port"></div>
-                    <div class="ph-duo">
-                        <div class="ph ph-mid-land"></div>
-                        <div class="ph ph-mid-sq"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2019.12→ 온나인슈퍼 (현재) -->
-            <div class="tl-entry tl-R now">
-                <div class="tl-info">
-                    <span class="tl-year">2019 →</span>
-                    <div class="tl-co">(주)온나인슈퍼</div>
-                    <div class="tl-role">온라인 사업 총괄 · 부장</div>
-                    <span class="tl-now-badge">현재</span>
-                </div>
-                <div class="tl-photos">
-                    <div class="ph ph-top-land"></div>
-                    <div class="ph-duo">
-                        <div class="ph ph-mid-port"></div>
-                        <div class="ph ph-mid-sq"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+<!-- ══════════════════════════════════════════════════════════════════
+     CATEGORY 1: 상품 & 콘텐츠 MD&IP
+═══════════════════════════════════════════════════════════════════ -->
+<div style="background: #0fd4a0;" id="product">
+  <div class="container">
+    <div class="cat-banner">
+      <div class="cat-number">01</div>
+      <div class="cat-label">Category 01</div>
+      <div class="cat-title">상품 &amp; 콘텐츠</div>
+      <div class="cat-desc">출판 콘텐츠부터 음료 패키지, 서체 개발, 웹매거진, 유아교구까지</div>
     </div>
+  </div>
+</div>
+
+<div class="projects-grid">
+  <!-- P01 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p01-1.jpg" alt="굿바이마눌 가이드북 1"></div>
+        <div class="slider-slide"><img src="cat01-p01-2.jpg" alt="굿바이마눌 가이드북 2"></div>
+        <div class="slider-slide"><img src="cat01-p01-3.jpg" alt="굿바이마눌 가이드북 3"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 01</div>
+      <div class="project-title">채널A 드라마 '굿바이마눌'<br>드라마 가이드북</div>
+      <div class="project-period">2012.03 – 2012.11</div>
+      <div class="project-desc">사내 아이디어 공모에서 시작된 1인 프로젝트. 채널A 라이선스를 구매하고, 한국관광공사 지원으로 드라마 촬영지를 취재·삽입한 가이드북을 기획했습니다. 한국판·일본판 두 버전을 제작했으며, 일본어 집필에도 직접 참여했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">가이드북기획</span>
+        <span class="tag">취재집필</span>
+        <span class="tag">라이선싱</span>
+        <span class="tag">일본수출</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P02 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p02-1.jpg" alt="류시원 DVD 패키지 1"></div>
+        <div class="slider-slide"><img src="cat01-p02-2.jpg" alt="류시원 DVD 패키지 2"></div>
+        <div class="slider-slide"><img src="cat01-p02-3.jpg" alt="류시원 DVD 패키지 3"></div>
+        <div class="slider-slide"><img src="cat01-p02-4.jpg" alt="류시원 DVD 패키지 4"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 02</div>
+      <div class="project-title">류시원의 레이싱다이어리<br>DVD 프로모션 패키지</div>
+      <div class="project-period">2013 / 2014</div>
+      <div class="project-desc">가이드북 역량을 인정받아 확장된 IP 굿즈 제작 프로젝트. 스타 개인사 이슈로 시장성이 줄어드는 상황에서 고부가가치를 창출하기 위해 DVD 단품 출시를 프로모션 패키지로 기획·제작했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">화보집기획</span>
+        <span class="tag">네이밍</span>
+        <span class="tag tag-orange">IP굿즈</span>
+        <span class="tag">프로모션</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P03 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p03-1.jpg" alt="몽베스트 패키지 기획"></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 03</div>
+      <div class="project-title">몽베스트 제품패키지<br>기획 및 리뉴얼</div>
+      <div class="project-period">2021.04 – 2023.01</div>
+      <div class="project-desc">사내 디자인 부서 없이 외부 디자이너를 기용하고 커뮤니케이션하며 신제품 출시 및 리뉴얼 작업을 총괄했습니다. 탄산수 3종 출시, 생수 라벨 리뉴얼, 위드어스 무라벨 3D 디자인, 탄산수 패키지 리뉴얼까지 4개 프로젝트를 수행했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">디자인디렉팅</span>
+        <span class="tag">패키지기획</span>
+        <span class="tag tag-green">리뉴얼</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P04 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p04-1.png" alt="몽베스트 드림체 서체"></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 04</div>
+      <div class="project-title">몽베스트 드림체<br>기업전용서체 개발</div>
+      <div class="project-period">2020.09 – 2021.03</div>
+      <div class="project-desc">디자인 라이선스 비용 절감과 브랜드 아이덴티티 강화를 위해 기업전용 서체를 기획·개발했습니다. 네 글자 기준 전체 서체 제작을 외주 개발사와 협업하여 완성하고, IP 등록까지 진행했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">서체개발</span>
+        <span class="tag">네이밍</span>
+        <span class="tag tag-blue">IP등록</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P05 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p05-1.JPG" alt="MONTZINE 메인"></div>
+        <div class="slider-slide"><img src="cat01-p05-2.png" alt="MONTZINE 아티클 1"></div>
+        <div class="slider-slide"><img src="cat01-p05-3.png" alt="MONTZINE 아티클 2"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 05</div>
+      <div class="project-title">MONTZINE(몽진)<br>웹매거진 릴리즈</div>
+      <div class="project-period">2022–2024 · 기획·런칭</div>
+      <div class="project-desc">쇼핑몰 내 매거진 카테고리를 개설하고 웹매거진의 방향성을 기획했습니다. 인력 채용과 플랫폼 개발을 담당하는 헤드 디렉터로서 UI/UX 기획을 주도하고 배포 및 운영까지 참여했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">헤드디렉터</span>
+        <span class="tag">UX/UI기획</span>
+        <span class="tag tag-green">웹매거진</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P06 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p06-1.jpg" alt="베스트프렌즈 모모&코코 교구"></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 06</div>
+      <div class="project-title">베스트프렌즈 모모&amp;코코<br>자석코디 유아교구</div>
+      <div class="project-period">2017.08 – 2019.03</div>
+      <div class="project-desc">유럽 브랜드 제품을 모티브로, K-POP 스타일의 스토리라인·타이틀·작가 섭외·상세페이지 콘텐츠 기획까지 전 라인에 참여했습니다. 패키지를 배경으로 활용할 수 있는 소비성에 주안점을 두고 제작했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">제품기획</span>
+        <span class="tag">스토리텔링</span>
+        <span class="tag tag-orange">작가섭외</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P07 -->
+  <div class="project-card" style="--ac:#0fd4a0">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat01-p07-1.jpg" alt="아리아띠 자석포스터 1"></div>
+        <div class="slider-slide"><img src="cat01-p07-2.jpg" alt="아리아띠 자석포스터 2"></div>
+        <div class="slider-slide"><img src="cat01-p07-3.jpg" alt="아리아띠 자석포스터 3"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 07</div>
+      <div class="project-title">아리아띠 자석포스터<br>유아자석교구</div>
+      <div class="project-period">2017 – 2019</div>
+      <div class="project-desc">인테리어와 교육 용도를 동시에 충족하는 자석포스터를 기획했습니다. 기존에 판매되던 자석글자와 병행 활용이 가능하도록 설계하여 추가 구매를 유도하는 크로스오버 전략을 실행했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">제품기획</span>
+        <span class="tag">크로스오버전략</span>
+        <span class="tag">디자인디렉팅</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CATEGORY 2: 브랜딩 & 웹기획
+═══════════════════════════════════════════════════════════════════ -->
+<div style="background: #5ecb50;" id="platform">
+  <div class="container">
+    <div class="cat-banner">
+      <div class="cat-number">02</div>
+      <div class="cat-label">Category 02</div>
+      <div class="cat-title">브랜딩 &amp; 웹기획</div>
+      <div class="cat-desc">쇼핑몰 기획·개발 · 브랜드 디렉팅 · 웹기획까지</div>
+    </div>
+  </div>
+</div>
+
+<div class="projects-grid">
+  <!-- P01 -->
+  <div class="project-card" style="--ac:#5ecb50">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat02-p01-1.jpg" alt="몽샵 메인화면 1"></div>
+        <div class="slider-slide"><img src="cat02-p01-2.jpg" alt="몽샵 메인화면 2"></div>
+        <div class="slider-slide"><img src="cat02-p01-3.jpg" alt="몽샵 메인화면 3"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 01</div>
+      <div class="project-title">몽샵 쇼핑몰 개발 &amp;<br>리뉴얼 프로젝트</div>
+      <div class="project-period">2021.09 – 2022.01 (런칭) / 2022.10 (보수)</div>
+      <div class="project-desc">단일상품 쇼핑몰에 공급사 입점·정기배송·선물하기·다중배송 기능과 웹매거진을 탑재한 버티컬샵으로 전환했습니다. 사이트맵·스토리보드 기획 후 개발자와 직접 소통하며 프로젝트를 완성했습니다. (개발사 이슈로 재개발 진행 경험 포함)</div>
+      <div class="project-tags">
+        <span class="tag tag-blue">프로젝트리더</span>
+        <span class="tag">UI/UX기획</span>
+        <span class="tag">쇼핑몰개발</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P02 -->
+  <div class="project-card" style="--ac:#5ecb50">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat02-p02-1.jpg" alt="마요앤코 쇼핑몰"></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 02</div>
+      <div class="project-title">마요앤코<br>개인쇼핑몰 창업</div>
+      <div class="project-period">2017.03 – 2019</div>
+      <div class="project-desc">브랜딩·쇼핑몰 개설·상품기획·운영·CS·프로모션을 1인으로 전담했습니다. 일본 직수입 및 총판·포워딩 플랫폼 활용, 사진촬영·편집·디자인까지 모두 직접 진행한 A to Z 창업 프로젝트입니다.</div>
+      <div class="project-tags">
+        <span class="tag">1인창업</span>
+        <span class="tag">일본직수입</span>
+        <span class="tag tag-orange">브랜딩</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P03 -->
+  <div class="project-card" style="--ac:#5ecb50">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat02-p03-1.jpg" alt="유아동 쇼핑몰 컨설팅 1"></div>
+        <div class="slider-slide"><img src="cat02-p03-2.JPG" alt="유아동 쇼핑몰 컨설팅 2"></div>
+        <div class="slider-slide"><img src="cat02-p03-3.JPG" alt="유아동 쇼핑몰 컨설팅 3"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 03</div>
+      <div class="project-title">유아동 쇼핑몰<br>창업컨설팅 &amp; 운영대행</div>
+      <div class="project-period">2016.11 – 2017.06 (8개월)</div>
+      <div class="project-desc">브랜딩(BI 기획 포함)·쇼핑몰 개설·해외페어 상품 바잉·콘텐츠 제작(사진촬영·상세페이지·프로모션)·운영·CS 대행 등 창업 전 과정을 컨설팅하고 직접 운영했습니다.</div>
+      <div class="project-tags">
+        <span class="tag tag-green">창업컨설팅</span>
+        <span class="tag">운영대행</span>
+        <span class="tag">해외바잉</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P04 -->
+  <div class="project-card" style="--ac:#5ecb50">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat02-p04-1.JPG" alt="메종드서울 쇼핑몰 1"></div>
+        <div class="slider-slide"><img src="cat02-p04-2.JPG" alt="메종드서울 쇼핑몰 2"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 04</div>
+      <div class="project-title">K뷰티 역직구몰<br>3주년 쇼핑몰 리뉴얼 PM</div>
+      <div class="project-period">2019.06 – 약 10개월</div>
+      <div class="project-desc">메종드서울의 쇼핑몰 리뉴얼 오픈·3주년 프로모션·굿즈 제작을 포함한 운영대행을 총괄했습니다. 100% 일본어 커뮤니케이션 환경에서 콘텐츠 일본어 번역·디자인·SNS 운영·인스타라이브까지 담당했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">PM</span>
+        <span class="tag tag-orange">일본어 100%</span>
+        <span class="tag">SNS운영</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CATEGORY 3: 프로모션 기획 및 디자인디렉팅
+═══════════════════════════════════════════════════════════════════ -->
+<div style="background: #ffc31a;" id="promo">
+  <div class="container">
+    <div class="cat-banner">
+      <div class="cat-number">03</div>
+      <div class="cat-label">Category 03</div>
+      <div class="cat-title">프로모션 기획</div>
+      <div class="cat-desc">전사 프로모션 기획·실행부터 팬미팅 부스 운영까지</div>
+    </div>
+  </div>
+</div>
+
+<div class="projects-grid">
+  <!-- P01 -->
+  <div class="project-card" style="--ac:#ffc31a">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat03-p01-1.jpg" alt="몽베스트 프로모션 1"></div>
+        <div class="slider-slide"><img src="cat03-p01-2.jpg" alt="몽베스트 프로모션 2"></div>
+        <div class="slider-slide"><img src="cat03-p01-3.jpg" alt="몽베스트 프로모션 3"></div>
+        <div class="slider-slide"><img src="cat03-p01-4.jpg" alt="몽베스트 프로모션 4" style="object-position: center 65%;"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 01</div>
+      <div class="project-title">몽베스트·몽샵<br>전사 프로모션 PM</div>
+      <div class="project-period">2019 – 2025</div>
+      <div class="project-desc">자사몰·브랜드스토어 운영 PM으로 ITI 국제식음료 수상기념, '몽마를때 몽베스트' 브랜딩 광고, 콤부차 출시·송혜교 광고 온에어 기념, 글로벌 어워드 2관왕 기념 프로모션 등 매년 전사 시즌이벤트를 기획·총괄했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">프로젝트리더</span>
+        <span class="tag tag-orange">브랜딩광고</span>
+        <span class="tag">디지털마케팅</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P02 -->
+  <div class="project-card" style="--ac:#ffc31a">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat03-p02-1.png" alt="세일 전단지 기획"></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 02</div>
+      <div class="project-title">세일 전단지 기획<br>(체화재고 소진 프로젝트)</div>
+      <div class="project-period">2007</div>
+      <div class="project-desc">물류창고 비용 절감을 위한 신문 삽지 전단 기획. 일본 Loft社의 전단 포맷에서 모티베이션을 받아, 브랜드 아이덴티티를 유지하면서도 '창고대방출' 느낌을 살린 상품 진열 방식을 고안했습니다. 상품 셀렉부터 디자인 디렉팅까지 직접 담당했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">전단기획</span>
+        <span class="tag">상품소싱</span>
+        <span class="tag tag-green">디자인디렉팅</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P03 -->
+  <div class="project-card" style="--ac:#ffc31a">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat03-p03-1.jpg" alt="팬미팅 부스 1"></div>
+        <div class="slider-slide"><img src="cat03-p03-2.png" alt="팬미팅 부스 2"></div>
+        <div class="slider-slide"><img src="cat03-p03-3.jpg" alt="팬미팅 부스 3"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 03</div>
+      <div class="project-title">류시원 생일 팬미팅<br>이벤트 부스 운영 총괄</div>
+      <div class="project-period">2011 – 2014 (연간)</div>
+      <div class="project-desc">10월 생일 팬미팅을 2011–2013년 3년 연속 주도했습니다. 판매계획(예산·매출)·상품기획·제작·판매운영 기획·부스 VMD·유인물 기획까지 연간 프로젝트 전체를 리드했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">이벤트총괄</span>
+        <span class="tag">VMD</span>
+        <span class="tag tag-orange">IP굿즈</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CATEGORY 4: 공간기획 스토리텔링 및 프로젝트 감리
+═══════════════════════════════════════════════════════════════════ -->
+<div style="background: #ff8c20;" id="space">
+  <div class="container">
+    <div class="cat-banner">
+      <div class="cat-number">04</div>
+      <div class="cat-label">Category 04</div>
+      <div class="cat-title">공간기획 스토리텔링</div>
+      <div class="cat-desc">키즈카페 IP 공간부터 키오스크 스토어까지 공간에 이야기를 입히는 작업</div>
+    </div>
+  </div>
+</div>
+
+<div class="projects-grid">
+  <!-- P01 -->
+  <div class="project-card" style="--ac:#ff8c20">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat04-p01-1.jpg" alt="딸기가좋아 키즈카페 1"></div>
+        <div class="slider-slide"><img src="cat04-p01-2.jpg" alt="딸기가좋아 키즈카페 2"></div>
+        <div class="slider-slide"><img src="cat04-p01-3.jpg" alt="딸기가좋아 키즈카페 3"></div>
+        <div class="slider-slide"><img src="cat04-p01-4.jpg" alt="딸기가좋아 키즈카페 4"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 01</div>
+      <div class="project-title">딸기가좋아 키즈카페<br>IP 공간 스토리텔링</div>
+      <div class="project-period">2014 – 2015 · 기획·감리 (4개 지점)</div>
+      <div class="project-desc">'딸기가좋아' 캐릭터 IP를 활용해 삼송(바다·배), 청라(하늘·비행기), 한양대(그라운드·모래사장), 분당(동굴) 등 4개 지점의 컨셉 기획과 공간 스토리텔링·인테리어 감리를 담당했습니다. 내외부 PT와 매뉴얼 기획까지 파트 리더로 총괄했습니다.</div>
+      <div class="project-tags">
+        <span class="tag tag-green">공간스토리텔링</span>
+        <span class="tag">인테리어감리</span>
+        <span class="tag">파트리더</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P02 -->
+  <div class="project-card" style="--ac:#ff8c20">
+    <div class="project-img">
+      <div class="slider-track">
+        <div class="slider-slide"><img src="cat04-p02-1.jpg" alt="똥빵 키오스크 스토어 1"></div>
+        <div class="slider-slide"><img src="cat04-p02-2.jpg" alt="똥빵 키오스크 스토어 2"></div>
+      </div>
+      <button class="slider-btn slider-btn--prev" aria-label="이전">&#8249;</button>
+      <button class="slider-btn slider-btn--next" aria-label="다음">&#8250;</button>
+      <div class="slider-dots">
+        <span class="slider-dot slider-dot--active"></span>
+        <span class="slider-dot"></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-num">Project 02</div>
+      <div class="project-title">똥빵 키오스크 스토어<br>기획 및 오픈</div>
+      <div class="project-period">2015.07 오픈 (올림픽공원 · 롯데백화점)</div>
+      <div class="project-desc">'딸기가좋아' 인기 캐릭터 '똥침이'를 활용한 이동형 키오스크 콘셉트를 기획하고, 올림픽공원점과 롯데백화점 청량리점 푸드코트에 붙박이 매장으로 오픈했습니다. 스토리텔링·디자인·인테리어 감리를 담당했습니다.</div>
+      <div class="project-tags">
+        <span class="tag">키오스크기획</span>
+        <span class="tag tag-orange">IP활용</span>
+        <span class="tag">인테리어감리</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PERSPECTIVE BANNER ───────────────────────────────────────── -->
+<section class="perspective-banner">
+  <div class="pb-inner">
+    <div class="pb-frame">
+      <div class="pb-chrome">
+        <div class="pb-chrome-top">
+          <div class="pb-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="pb-chrome-bar">
+          <div class="pb-tab">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            jihyunkim.portfolio
+          </div>
+          <div class="pb-url">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            jihyunkim.portfolio / perspective
+          </div>
+        </div>
+      </div>
+      <div class="pb-body">
+        <div class="pb-label">Observing People, Brands, and Consumer Experiences.</div>
+        <div class="pb-headline">PERSPECTIVE</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<!-- ══ 04 LIFESTYLE — 사진만 ══ -->
-<section class="lifestyle">
-
-    <div class="ls-block">
-        <img src="image/me_cat person.jpeg" alt="">
-        <p class="ls-label">Cat Person</p>
+<!-- ── RADAR / CORE COMPETENCIES ───────────────────────────────── -->
+<section class="radar-section" id="profile">
+  <div class="radar-inner">
+    <div class="radar-svg-wrap">
+      <svg class="radar-svg" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg">
+        <!-- grid hexagons 20–100% -->
+        <polygon points="300,230 326,245 326,275 300,290 274,275 274,245" fill="none" stroke="#d8d6d1" stroke-width="1"/>
+        <polygon points="300,200 352,230 352,290 300,320 248,290 248,230" fill="none" stroke="#d8d6d1" stroke-width="1"/>
+        <polygon points="300,170 377.9,215 377.9,305 300,350 222.1,305 222.1,215" fill="none" stroke="#d8d6d1" stroke-width="1"/>
+        <polygon points="300,140 403.9,200 403.9,320 300,380 196.1,320 196.1,200" fill="none" stroke="#d8d6d1" stroke-width="1"/>
+        <polygon points="300,110 429.9,185 429.9,335 300,410 170.1,335 170.1,185" fill="none" stroke="#c8c4be" stroke-width="1.2"/>
+        <!-- axis lines -->
+        <line x1="300" y1="260" x2="300" y2="110" stroke="#e5e3df" stroke-width="1"/>
+        <line x1="300" y1="260" x2="429.9" y2="185" stroke="#e5e3df" stroke-width="1"/>
+        <line x1="300" y1="260" x2="429.9" y2="335" stroke="#e5e3df" stroke-width="1"/>
+        <line x1="300" y1="260" x2="300" y2="410" stroke="#e5e3df" stroke-width="1"/>
+        <line x1="300" y1="260" x2="170.1" y2="335" stroke="#e5e3df" stroke-width="1"/>
+        <line x1="300" y1="260" x2="170.1" y2="185" stroke="#e5e3df" stroke-width="1"/>
+        <!-- data polygon -->
+        <g class="radar-data-group">
+          <polygon points="300,117.5 416.9,192.5 414.3,326 300,387.5 189.6,323.75 183.1,192.5"
+                   fill="rgba(26,184,232,0.15)" stroke="#1ab8e8" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="300" cy="117.5" r="4" fill="#1ab8e8"/>
+          <circle cx="416.9" cy="192.5" r="4" fill="#1ab8e8"/>
+          <circle cx="414.3" cy="326" r="4" fill="#1ab8e8"/>
+          <circle cx="300" cy="387.5" r="4" fill="#1ab8e8"/>
+          <circle cx="189.6" cy="323.75" r="4" fill="#1ab8e8"/>
+          <circle cx="183.1" cy="192.5" r="4" fill="#1ab8e8"/>
+        </g>
+        <!-- axis labels -->
+        <text x="300" y="90" text-anchor="middle" class="radar-label">Strategy</text>
+        <text x="448" y="178" text-anchor="start" class="radar-label">Execution</text>
+        <text x="448" y="345" text-anchor="start" class="radar-label">Integration</text>
+        <text x="300" y="434" text-anchor="middle" class="radar-label">Insight</text>
+        <text x="152" y="345" text-anchor="end" class="radar-label">Communication</text>
+        <text x="152" y="178" text-anchor="end" class="radar-label">Creative Sense</text>
+      </svg>
     </div>
-
-    <div class="ls-block">
-        <img src="image/me vive.JPG" alt="">
-        <p class="ls-label">My Vibe</p>
+    <div class="radar-text">
+      <p class="radar-eyebrow">Core Competencies</p>
+      <h2 class="radar-heading">PERSPECTIVE</h2>
+      <ul class="radar-axes-list">
+        <li>
+          <span class="ral-name">Strategy</span>
+          <span class="ral-desc">Setting direction and purpose — from insight to actionable plan</span>
+        </li>
+        <li>
+          <span class="ral-name">Execution</span>
+          <span class="ral-desc">Driving projects from concept to launch across teams</span>
+        </li>
+        <li>
+          <span class="ral-name">Integration</span>
+          <span class="ral-desc">Connecting brands, content, and commerce into one story</span>
+        </li>
+        <li>
+          <span class="ral-name">Insight</span>
+          <span class="ral-desc">Reading people, trends, and experience signals</span>
+        </li>
+        <li>
+          <span class="ral-name">Communication</span>
+          <span class="ral-desc">Bridging vision with teams, partners, and stakeholders</span>
+        </li>
+        <li>
+          <span class="ral-name">Creative Sense</span>
+          <span class="ral-desc">Translating aesthetics into meaningful brand stories</span>
+        </li>
+      </ul>
     </div>
-
-    <div class="ls-block">
-        <img src="image/me_also dog person.jpeg" alt="">
-        <p class="ls-label">Also Dog Person</p>
-    </div>
-
+  </div>
 </section>
 
+<!-- ── CONTACT ──────────────────────────────────────────────────── -->
+<section class="contact-editorial" id="contact">
 
-<!-- ══ 05 CONTACT ══ -->
-<section class="contact">
-    <div class="contact-inner">
-        <div class="contact-heading">
-            <span>CON</span>
-            <span class="out">TA</span>
-            <span>CT</span>
-        </div>
-        <div class="contact-links">
-            <a href="mailto:md.jihyun@gmail.com">md.jihyun@gmail.com</a>
-            <a href="tel:01032021179">010-3202-1179</a>
-            <a href="https://instagram.com/hyuna505" target="_blank">@hyuna505</a>
-        </div>
-        <div class="contact-foot">
-            <span>Kim Jihyun · Brand Manager</span>
-            <span>Seoul · 2026</span>
-        </div>
+  <!-- polaroid photo: spans wood/gray boundary -->
+  <div class="contact-polaroid-wrap">
+    <!-- paperclip SVG -->
+    <svg class="contact-paperclip" width="58" height="104" viewBox="0 0 58 104" fill="none">
+      <!-- outer loop -->
+      <path d="M29 5 C46 5 52 17 52 30 C52 68 29 90 29 90 C29 90 6 68 6 30 C6 17 12 5 29 5 Z"
+            stroke="#b6b3ad" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- inner loop -->
+      <path d="M29 21 C41 21 44 30 44 39 C44 60 29 72 29 72 C29 72 14 60 14 39 C14 30 17 21 29 21 Z"
+            stroke="#d2cfc9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- highlight on outer left -->
+      <path d="M11 22 C9 26 8 30 8 35" stroke="#e0ddd7" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+
+    <div class="contact-polaroid">
+      <img src="me.jpeg" alt="Jihyun Kim" class="contact-photo">
     </div>
+  </div>
+
+  <!-- gray content panel -->
+  <div class="contact-panel">
+    <div class="contact-panel-inner">
+      <h2 class="contact-heading">Contact me.</h2>
+      <p class="contact-sub">Bridging branding, content, and commerce</p>
+
+      <div class="contact-rows">
+        <div class="contact-row">
+          <span class="contact-script-label">Phone</span>
+          <span class="contact-row-text"><a href="tel:+821032021179">010-3202-1179</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-script-label">Email</span>
+          <span class="contact-row-text"><a href="mailto:md.jihyun@gmail.com">md.jihyun@gmail.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-script-label">Instagram</span>
+          <span class="contact-row-text"><a href="https://www.instagram.com/hyuna505" target="_blank">@hyuna505</a></span>
+        </div>
+      </div>
+
+      <p class="contact-keywords">Branding · Content · Commerce · IP Business · E-commerce · Consumer Experience</p>
+    </div>
+  </div>
 </section>
+
+<footer>
+  © 2026 Jihyun Kim · Content &amp; Product Planning Portfolio
+</footer>
 
 
 <script>
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-        const el = document.querySelector(a.getAttribute('href'));
-        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+(function () {
+  // ── HERO TABS ──────────────────────────────────────────────
+  const tabs = document.querySelectorAll('.hero-tab');
+  const card = document.querySelector('.hero-card-main');
+
+  function activate(tab, index) {
+    const color = tab.dataset.color;
+    tabs.forEach(t => { t.classList.remove('hero-tab--active'); t.style.background = ''; });
+    document.querySelectorAll('.hero-panel').forEach(p => p.classList.remove('hero-panel--active'));
+    tab.classList.add('hero-tab--active');
+    tab.style.background = color;
+    document.getElementById(tab.dataset.panel).classList.add('hero-panel--active');
+    card.style.background = color;
+    card.style.borderTopLeftRadius = index === 0 ? '0' : '20px';
+  }
+
+  tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(tab, i)));
+
+  // ── IMAGE SLIDERS ──────────────────────────────────────────
+  function initSlider(projectCard) {
+    const track = projectCard.querySelector('.slider-track');
+    const slides = projectCard.querySelectorAll('.slider-slide');
+    if (!track || slides.length < 2) return;
+
+    const dots = projectCard.querySelectorAll('.slider-dot');
+    const prevBtn = projectCard.querySelector('.slider-btn--prev');
+    const nextBtn = projectCard.querySelector('.slider-btn--next');
+    let current = 0;
+    const total = slides.length;
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('slider-dot--active', i === current); });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+
+    var startX = 0, startY = 0;
+    track.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
     });
-});
+  }
+
+  document.querySelectorAll('.project-card').forEach(initSlider);
+
+  // ── RADAR CHART ANIMATION ──────────────────────────────────
+  var radarGroup = document.querySelector('.radar-data-group');
+  if (radarGroup && 'IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { radarGroup.classList.add('radar-animated'); obs.disconnect(); }
+      });
+    }, { threshold: 0.4 });
+    obs.observe(radarGroup);
+  }
+})();
 </script>
 </body>
 </html>
