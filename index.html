@@ -159,6 +159,8 @@
       text-transform: uppercase; color: rgba(0,0,0,.65);
       border: 1px solid rgba(0,0,0,.10); border-bottom: none;
       cursor: pointer; user-select: none;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
       transition: filter .12s;
     }
     .hero-tab:hover { filter: brightness(.93); }
@@ -959,7 +961,7 @@
       .nav-email-text { display: none; }
 
       /* hero — 탭 너비를 flex: 1로 분배, 화면 폭에 맞게 균등 축소 */
-      .hero { padding: 60px 16px 48px; }
+      .hero { padding: 60px 16px 48px; min-height: auto; align-items: flex-start; }
       .hero-editorial { padding-top: 44px; }
       .hero-tabs { gap: 2px; }
       .hero-tab {
@@ -968,6 +970,8 @@
       }
       .hero-tab--active { height: 44px !important; }
       .hero-card-main { padding: 28px 20px 32px; }
+      .hcs-val { font-size: 12px; letter-spacing: 0; white-space: nowrap; }
+      .hcs-divider { height: 24px; }
 
       .hero-card { grid-template-columns: 1fr; }
       .about-hero-grid { grid-template-columns: 1fr; }
@@ -2041,7 +2045,10 @@
     card.style.borderTopLeftRadius = index === 0 ? '0' : '20px';
   }
 
-  tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(tab, i)));
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(tab, i));
+    tab.addEventListener('touchend', function(e) { e.preventDefault(); activate(tab, i); });
+  });
 
   // ── IMAGE SLIDERS ──────────────────────────────────────────
   function initSlider(projectCard) {
