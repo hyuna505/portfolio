@@ -933,7 +933,9 @@
     .radar-svg { width: 100%; height: auto; }
     .radar-label { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; fill: #5d5b54; }
     .radar-data-group {
-      transform-origin: 300px 260px; transform: scale(0);
+      transform-box: fill-box;
+      transform-origin: center center;
+      transform: scale(0);
       transition: transform .8s cubic-bezier(.34,1.56,.64,1);
     }
     .radar-data-group.radar-animated { transform: scale(1); }
@@ -2090,16 +2092,21 @@
 
   // ── RADAR CHART ANIMATION ──────────────────────────────────
   var radarGroup = document.querySelector('.radar-data-group');
+  var radarSection = document.querySelector('.radar-section');
+  function triggerRadar() {
+    if (radarGroup) radarGroup.classList.add('radar-animated');
+  }
   if (radarGroup) {
+    var target = radarSection || radarGroup;
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
-          if (e.isIntersecting) { radarGroup.classList.add('radar-animated'); obs.disconnect(); }
+          if (e.isIntersecting) { triggerRadar(); obs.disconnect(); }
         });
-      }, { threshold: 0.05 });
-      obs.observe(radarGroup);
+      }, { threshold: 0 });
+      obs.observe(target);
     } else {
-      radarGroup.classList.add('radar-animated');
+      triggerRadar();
     }
   }
 })();
