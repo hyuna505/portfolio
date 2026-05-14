@@ -966,7 +966,9 @@
       .hero-tabs { gap: 2px; }
       .hero-tab {
         flex: 1; min-width: 0; width: auto;
-        font-size: 7px; letter-spacing: .4px; height: 36px;
+        font-size: 7px; letter-spacing: 0; height: 36px;
+        overflow: hidden; padding: 0 2px;
+        word-break: keep-all;
       }
       .hero-tab--active { height: 44px !important; }
       .hero-card-main { padding: 28px 20px 32px; }
@@ -2088,13 +2090,17 @@
 
   // ── RADAR CHART ANIMATION ──────────────────────────────────
   var radarGroup = document.querySelector('.radar-data-group');
-  if (radarGroup && 'IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { radarGroup.classList.add('radar-animated'); obs.disconnect(); }
-      });
-    }, { threshold: 0.4 });
-    obs.observe(radarGroup);
+  if (radarGroup) {
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { radarGroup.classList.add('radar-animated'); obs.disconnect(); }
+        });
+      }, { threshold: 0.05 });
+      obs.observe(radarGroup);
+    } else {
+      radarGroup.classList.add('radar-animated');
+    }
   }
 })();
 </script>
